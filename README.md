@@ -44,5 +44,6 @@ On top of the [built-in functionality in Handlebars](https://github.com/xp-forge
 
 * `encode`: Performs URL-encoding 
 * `equals`: Tests arguments for equality
+* `contains`: Tests whether a string or array contains a certain value
 * `size`: Returns string length or array size
 * `date`: Transforms dates and timestamps

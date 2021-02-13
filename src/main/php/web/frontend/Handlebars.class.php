@@ -7,13 +7,6 @@ use util\Date;
 /**
  * Handlebars-based template engine for web frontends.
  *
- * Essential helpers included:
- *
- * - `encode`: Performs URL-encoding 
- * - `equals`: Tests arguments for equality
- * - `size`: Returns string length or array size
- * - `date`: Transforms dates and timestamps
- *
  * @test  web.frontend.unittest.HandlebarsTest
  * @see   https://handlebarsjs.com/
  */
@@ -33,7 +26,16 @@ class Handlebars implements Templates {
         return rawurlencode($options[0] ?? '');
       })
       ->withHelper('equals', function($in, $context, $options) {
-        return (($options[0] ?? null) === ($options[1] ?? null)) ? 1 : 0;
+        return (int)(($options[0] ?? null) === ($options[1] ?? null));
+      })
+      ->withHelper('contains', function($in, $context, $options) {
+        if (!isset($options[0])) {
+          return 0;
+        } else if (is_array($options[0])) {
+          return (int)in_array($options[1] ?? null, $options[0]);
+        } else {
+          return false === strpos($options[0], $options[1] ?? null) ? 0 : 1;
+        }
       })
       ->withHelper('size', function($in, $context, $options) {
         if (!isset($options[0])) {

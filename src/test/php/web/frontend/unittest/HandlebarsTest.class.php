@@ -60,6 +60,22 @@ class HandlebarsTest {
     Assert::equals('0', $this->transform($template, ['a' => 'A']));
   }
 
+  #[Test, Values(['{{contains test "Test"}}', '{{contains test "e"}}', '{{contains numbers 1}}'])]
+  public function is_contained($template) {
+    Assert::equals('1', $this->transform($template, [
+      'test'    => 'Test',
+      'numbers' => [1, 2, 3],
+    ]));
+  }
+
+  #[Test, Values(['{{contains test "Hi"}}', '{{contains test "a"}}', '{{contains numbers 4}}'])]
+  public function not_contained($template) {
+    Assert::equals('0', $this->transform($template, [
+      'test'    => 'Test',
+      'numbers' => [1, 2, 3],
+    ]));
+  }
+
   #[Test, Values([['test', 4], ['numbers', 3], ['sizes', 2], ['empty', 0], ['count', 1], ['null', 0]])]
   public function size($expr, $expected) {
     Assert::equals((string)$expected, $this->transform('{{size '.$expr.'}}', [
