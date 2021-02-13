@@ -38,3 +38,12 @@ class App extends Application {
 ```
 
 The templates then live in `src/main/handlebars` and correspond to lowercased version of the handler names (`Home::class` => `home.handlebars`).
+
+Helpers
+-------
+On top of the [built-in functionality in Handlebars](https://github.com/xp-forge/handlebars), this library includes the following essential helpers:
+
+* `encode`: Performs URL-encoding 
+* `equals`: Tests arguments for equality
+* `size`: Returns string length or array size
+* `date`: Transforms dates and timestamps
