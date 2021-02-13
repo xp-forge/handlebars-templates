@@ -3,6 +3,7 @@ Handlebars for XP web frontends change log
 
 ## ?.?.? / ????-??-??
 
+* Add `any`, `none` and `all` helpers - @thekid
 * Add `min` and `max` helpers - @thekid
 * Add `contains` helper - @thekid
 

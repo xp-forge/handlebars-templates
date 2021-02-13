@@ -48,4 +48,7 @@ On top of the [built-in functionality in Handlebars](https://github.com/xp-forge
 * `size`: Returns string length or array size
 * `min`: Returns smallest element
 * `max`: Returns largest element
+* `any`: Test whether any of the given arguments is truthy
+* `none`: Test whether none of the given arguments is truthy
+* `all`: Test whether all of the given arguments is truthy
 * `date`: Transforms dates and timestamps

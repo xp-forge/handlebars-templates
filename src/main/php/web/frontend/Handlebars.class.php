@@ -60,6 +60,24 @@ class Handlebars implements Templates {
           default: return min($options);
         }
       })
+      ->withHelper('any', function($in, $context, $options) {
+        foreach ($options as $option) {
+          if ($context->isTruthy($option)) return 1;
+        }
+        return 0;
+      })
+      ->withHelper('none', function($in, $context, $options) {
+        foreach ($options as $option) {
+          if ($context->isTruthy($option)) return 0;
+        }
+        return 1;
+      })
+      ->withHelper('all', function($in, $context, $options) {
+        foreach ($options as $option) {
+          if (!$context->isTruthy($option)) return 0;
+        }
+        return empty($options) ? 0 : 1;
+      })
       ->withHelper('date', function($in, $context, $options) {
         if (!isset($options[0])) {
           $d= Date::now();
