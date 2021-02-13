@@ -122,6 +122,11 @@ class HandlebarsTest {
     Assert::equals(Date::now()->toString('d.m.Y'), $this->transform($template));
   }
 
+  #[Test, Values(['{{date 1613235019279 timestamp="ms"}}', '{{date 1613235019 timestamp="s"}}'])]
+  public function timestamp_resolution($template) {
+    Assert::equals('13.02.2021', $this->transform($template));
+  }
+
   #[Test, Values([['', 0], ['null', 0], ['"test"', 1], ['null "test"', 1], ['numbers', 1], ['empty', 0]])]
   public function any($expr, $expected) {
     Assert::equals((string)$expected, $this->transform('{{any '.$expr.'}}', [

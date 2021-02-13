@@ -79,10 +79,14 @@ class Handlebars implements Templates {
         return empty($options) ? 0 : 1;
       })
       ->withHelper('date', function($in, $context, $options) {
+        static $resolution= ['s' => 1, 'ms' => 1000];
+
         if (!isset($options[0])) {
           $d= Date::now();
         } else if ($options[0] instanceof Date) {
           $d= $options[0];
+        } else if ($r= $options['timestamp'] ?? null) {
+          $d= new Date('@'.($options[0] / $resolution[$r]));
         } else {
           $d= new Date($options[0]);
         }

@@ -3,6 +3,12 @@ Handlebars for XP web frontends change log
 
 ## ?.?.? / ????-??-??
 
+## 0.3.0 / 2021-02-13
+
+* Add support for milliseconds resolution in timestamps to `date` helper,
+  thus being able to use JavaScript timestamps.
+  (@thekid)
+
 ## 0.2.0 / 2021-02-13
 
 * Add `any`, `none` and `all` helpers - @thekid

@@ -52,3 +52,16 @@ On top of the [built-in functionality in Handlebars](https://github.com/xp-forge
 * `none`: Test whether none of the given arguments is truthy
 * `all`: Test whether all of the given arguments is truthy
 * `date`: Transforms dates and timestamps
+
+### Date handling
+
+The `date` helper accepts anything the `util.Date` class accepts as constructor argument, or a `util.Date` instance itself. To format the date, the `format` argument can be used with anything the `util.Date::toString()` method accepts. Here are some examples:
+
+```handlebars
+{{date "2021-02-13"}}
+{{date "13.02.2021 17:56:00"}}
+{{date 1613209181}}
+{{date 1613209181279 timestamp="ms"}}
+{{date created}}
+{{date created format="d.m.Y"}}
+```
