@@ -86,7 +86,7 @@ class Handlebars implements Templates {
         } else if ($options[0] instanceof Date) {
           $d= $options[0];
         } else if ($r= $options['timestamp'] ?? null) {
-          $d= new Date('@'.($options[0] / $resolution[$r]));
+          $d= new Date('@'.(int)($options[0] / $resolution[$r]));
         } else {
           $d= new Date($options[0]);
         }
