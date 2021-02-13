@@ -24,12 +24,11 @@ class App extends Application {
 
   /** Returns routing for this web application */
   public function routes() {
-    $root= $this->environment->webroot();
     return [
-      '/static' => new FilesFrom(new Path($root, 'src/main/webapp')),
+      '/static' => new FilesFrom($this->environment->path('src/main/webapp')),
       '/'       => new Frontend(
         new HandlersIn('com.example.app.web'),
-        new Handlebars(new Path($root, 'src/main/handlebars')),
+        new Handlebars($this->environment->path('src/main/handlebars')),
         '/'
       )
     ];
