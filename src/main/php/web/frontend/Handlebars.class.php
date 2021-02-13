@@ -86,7 +86,7 @@ class Handlebars implements Templates {
         } else {
           $d= new Date($options[0]);
         }
-        return $d->toString($options[1] ?? 'd.m.Y');
+        return $d->toString($options['format'] ?? 'd.m.Y');
       })
     ;
   }

@@ -105,7 +105,7 @@ class HandlebarsTest {
   public function dates_with_format($date) {
     Assert::equals(
       '2021-02-13',
-      $this->transform('{{date tested "Y-m-d"}}', ['tested' => $date])
+      $this->transform('{{date tested format="Y-m-d"}}', ['tested' => $date])
     );
   }
 
