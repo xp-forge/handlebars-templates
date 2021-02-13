@@ -46,4 +46,6 @@ On top of the [built-in functionality in Handlebars](https://github.com/xp-forge
 * `equals`: Tests arguments for equality
 * `contains`: Tests whether a string or array contains a certain value
 * `size`: Returns string length or array size
+* `min`: Returns smallest element
+* `max`: Returns largest element
 * `date`: Transforms dates and timestamps

@@ -76,6 +76,20 @@ class HandlebarsTest {
     ]));
   }
 
+  #[Test, Values([['0 2 4', 4], ['numbers', 3]])]
+  public function max($expr, $expected) {
+    Assert::equals((string)$expected, $this->transform('{{max '.$expr.'}}', [
+      'numbers' => [1, 2, 3],
+    ]));
+  }
+
+  #[Test, Values([['0 2 4', 0], ['numbers', 1]])]
+  public function min($expr, $expected) {
+    Assert::equals((string)$expected, $this->transform('{{min '.$expr.'}}', [
+      'numbers' => [1, 2, 3],
+    ]));
+  }
+
   #[Test, Values([['test', 4], ['numbers', 3], ['sizes', 2], ['empty', 0], ['count', 1], ['null', 0]])]
   public function size($expr, $expected) {
     Assert::equals((string)$expected, $this->transform('{{size '.$expr.'}}', [

@@ -46,6 +46,20 @@ class Handlebars implements Templates {
           return strlen($options[0]);
         }
       })
+      ->withHelper('max', function($in, $context, $options) {
+        switch (sizeof($options)) {
+          case 0: return 0;
+          case 1: return max($options[0]);
+          default: return max($options);
+        }
+      })
+      ->withHelper('min', function($in, $context, $options) {
+        switch (sizeof($options)) {
+          case 0: return 0;
+          case 1: return min($options[0]);
+          default: return min($options);
+        }
+      })
       ->withHelper('date', function($in, $context, $options) {
         if (!isset($options[0])) {
           $d= Date::now();
