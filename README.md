@@ -37,7 +37,7 @@ class App extends Application {
 }
 ```
 
-The templates then live in `src/main/handlebars` and correspond to lowercased version of the handler names (`Home::class` => `home.handlebars`).
+The templates live in `src/main/handlebars`, their names corresponding to lowercased version of the handlers' names (`Home::class` => `home.handlebars`).
 
 Helpers
 -------
