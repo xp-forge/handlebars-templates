@@ -80,6 +80,7 @@ The `date` helper accepts anything the `util.Date` class accepts as constructor 
 {{date created}}
 {{date created format="d.m.Y"}}
 {{date created format="us:short"}}
+{{date created timezone="America/New_York"}}
 ```
 
 ### Logging

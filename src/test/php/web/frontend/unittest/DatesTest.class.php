@@ -12,15 +12,16 @@ class DatesTest extends HandlebarsTest {
   protected function extensions() {
     return [new Dates(new TimeZone(self::TZ), [
       null       => self::FORMAT,
-      'us:short' => 'Y-m-d',
+      'us:short' => 'm/d/Y',
     ])];
   }
 
   /** @return iterable */
   private function dates() {
-    yield new Date('2021-02-13');
-    yield '13.02.2021';
-    yield 1613209181;
+    yield new Date('2021-02-13 22:30:00', new TimeZone(self::TZ));
+    yield new Date('13.02.2021 12:30:00+01:00');
+    yield '2021-02-13T11:30:00Z';
+    yield 1613215800;
   }
 
   #[Test, Values('dates')]
@@ -34,7 +35,7 @@ class DatesTest extends HandlebarsTest {
   #[Test, Values('dates')]
   public function dates_with_named_format($date) {
     Assert::equals(
-      '2021-02-13',
+      '02/13/2021',
       $this->transform('{{date tested format="us:short"}}', ['tested' => $date])
     );
   }
@@ -57,11 +58,19 @@ class DatesTest extends HandlebarsTest {
     Assert::equals('13.02.2021', $this->transform($template));
   }
 
-  #[Test, Values(eval: '[new Date("13.02.2021 11:30:00", new TimeZone("UTC")), "13.02.2021 11:30:00 UTC", 1613215800]')]
-  public function converted_to_supplied_timezone($date) {
+  #[Test, Values('dates')]
+  public function converted_to_default_timezone($date) {
     Assert::equals(
       '13.02.2021 22:30:00',
       $this->transform('{{date tested format="d.m.Y H:i:s"}}', ['tested' => $date])
+    );
+  }
+
+  #[Test, Values('dates')]
+  public function converted_to_supplied_timezone($date) {
+    Assert::equals(
+      '13.02.2021 06:30:00',
+      $this->transform('{{date tested format="d.m.Y H:i:s" timezone="America/New_York"}}', ['tested' => $date])
     );
   }
 }

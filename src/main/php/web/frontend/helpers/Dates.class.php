@@ -23,14 +23,15 @@ class Dates extends Extension {
     yield 'date' => function($in, $context, $options) {
       static $resolution= ['s' => 1, 'ms' => 1000];
 
+      $tz= isset($options['timezone']) ? TimeZone::getByName($options['timezone']) : $this->timezone;
       if (!isset($options[0])) {
-        $d= Date::now($this->timezone);
+        $d= Date::now($tz);
       } else if ($options[0] instanceof Date) {
-        $d= $this->timezone->translate($options[0]);
+        $d= $tz->translate($options[0]);
       } else if ($r= $options['timestamp'] ?? null) {
-        $d= new Date('@'.(int)($options[0] / $resolution[$r]), $this->timezone);
+        $d= new Date('@'.(int)($options[0] / $resolution[$r]), $tz);
       } else {
-        $d= $this->timezone->translate(new Date($options[0]));
+        $d= $tz->translate(new Date($options[0]));
       }
 
       return $d->toString($this->formats[$options['format'] ?? null] ?? $options['format']);

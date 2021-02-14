@@ -4,7 +4,8 @@ Handlebars for XP web frontends change log
 ## ?.?.? / ????-??-??
 
 * Implemented basic timezone handling by passing default timezone to
-  the `web.frontend.helpers.Dates` helpers extension.
+  the `web.frontend.helpers.Dates` helpers extension, overwriteable by
+  passing e.g. `timezone="America/New_York"` in the handlebars helper.
   (@thekid)
 * Merged PR #4: Make template engine extensible; and extract the hard
   wired date formatting to its own extension
