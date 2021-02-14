@@ -29,7 +29,7 @@ class Dates extends Extension {
       } else if ($options[0] instanceof Date) {
         $d= $tz->translate($options[0]);
       } else if ($r= $options['timestamp'] ?? null) {
-        $d= new Date('@'.(int)($options[0] / $resolution[$r]), $tz);
+        $d= new Date((int)($options[0] / $resolution[$r]), $tz);
       } else {
         $d= $tz->translate(new Date($options[0]));
       }

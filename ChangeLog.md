@@ -3,6 +3,13 @@ Handlebars for XP web frontends change log
 
 ## ?.?.? / ????-??-??
 
+## 0.5.1 / 2021-02-14
+
+* Fixed timezone handling in conjunction with `timestamp` parameter
+  (@thekid)
+
+## 0.5.0 / 2021-02-14
+
 * Implemented basic timezone handling by passing default timezone to
   the `web.frontend.helpers.Dates` helpers extension, overwriteable by
   passing e.g. `timezone="America/New_York"` in the handlebars helper.

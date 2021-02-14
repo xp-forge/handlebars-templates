@@ -53,7 +53,7 @@ class DatesTest extends HandlebarsTest {
     Assert::equals(Date::now(new TimeZone(self::TZ))->toString(self::FORMAT), $this->transform($template));
   }
 
-  #[Test, Values(['{{date 1613235019279 timestamp="ms"}}', '{{date 1613235019 timestamp="s"}}'])]
+  #[Test, Values(['{{date 1613215800279 timestamp="ms"}}', '{{date 1613215800 timestamp="s"}}'])]
   public function timestamp_resolution($template) {
     Assert::equals('13.02.2021', $this->transform($template));
   }
