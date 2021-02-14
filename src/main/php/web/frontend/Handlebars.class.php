@@ -3,7 +3,7 @@
 use com\github\mustache\TemplateLoader;
 use com\handlebarsjs\{HandlebarsEngine, FilesIn};
 use util\Objects;
-use web\frontend\helpers\{Extension, Arrays, Dates, Essentials};
+use web\frontend\helpers\{Extension, Arrays, Essentials};
 
 /**
  * Handlebars-based template engine for web frontends.
@@ -19,8 +19,9 @@ class Handlebars implements Templates {
    * either a reference to a filesystem path, or using an in-memory loader 
    *
    * @param  string|io.Path|io.Folder|com.github.mustache.TemplateLoader $templates 
+   * @param  web.frontend.helpers.Extension... $extensions
    */
-  public function __construct($templates) {
+  public function __construct($templates, Extension... $extensions) {
     $this->backing= (new HandlebarsEngine())
       ->withTemplates($templates instanceof TemplateLoader ? $templates : new FilesIn($templates))
       ->withLogger(function($args) {
@@ -34,7 +35,9 @@ class Handlebars implements Templates {
 
     $this->using(new Essentials());
     $this->using(new Arrays());
-    $this->using(new Dates());
+    foreach ($extensions as $extension) {
+      $this->using($extension);
+    }
   }
 
   /** Adds helpers from the given extension */

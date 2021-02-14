@@ -1,8 +1,18 @@
 <?php namespace web\frontend\helpers;
 
-use util\Date;
+use util\{Date, TimeZone};
 
 class Dates implements Extension {
+  private $timezone, $formats;
+
+  /**
+   * Creates new dates extension using the given timezone and optional
+   * named formats to be used with the `format` parameter.
+   */
+  public function __construct(TimeZone $timezone= null, $formats= []) {
+    $this->timezone= $timezone ?? TimeZone::getLocal();
+    $this->formats= $formats + [null => 'd.m.Y H:i:s'];
+  }
 
   /** @return iterable */
   public function helpers() {
@@ -18,7 +28,8 @@ class Dates implements Extension {
       } else {
         $d= new Date($options[0]);
       }
-      return $d->toString($options['format'] ?? 'd.m.Y');
+
+      return $d->toString($this->formats[$options['format'] ?? null] ?? $options['format']);
     };
   }
 }
