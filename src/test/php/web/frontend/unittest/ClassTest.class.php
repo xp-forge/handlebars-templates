@@ -6,8 +6,13 @@ use web\frontend\Handlebars;
 class ClassTest extends HandlebarsTest {
 
   #[Test]
-  public function can_create() {
+  public function can_create_with_loader() {
     new Handlebars($this->templates);
+  }
+
+  #[Test]
+  public function can_create_with_path() {
+    new Handlebars('src/main/handlebars');
   }
 
   #[Test]
