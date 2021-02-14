@@ -5,9 +5,9 @@ Handlebars for XP web frontends change log
 
 ## 0.4.0 / 2021-02-14
 
-* Added default logging implementation which echoes the content. When
-  using the development webserver, this will show the debug page - for
-  production, the content will be written to server's standard output.
+* Merged PR #2: Logging. Using the development webserver, this will show
+  the debug page - for production, the content will be written to the
+  server's standard output.
   (@thekid)
 
 ## 0.3.0 / 2021-02-13
