@@ -51,9 +51,23 @@ On top of the [built-in functionality in Handlebars](https://github.com/xp-forge
 * `any`: Test whether any of the given arguments is truthy
 * `none`: Test whether none of the given arguments is truthy
 * `all`: Test whether all of the given arguments is truthy
-* `date`: Transforms dates and timestamps
 
 ### Date handling
+
+```php
+use util\TimeZone;
+use web\frontend\Handlebars;
+use web\frontend\helpers\Dates;
+
+new Handlebars($templates, new Dates());
+
+// Pass timezone or NULL to use local timezone
+new Handlebars($templates, new Dates(new TimeZone('Europe/Berlin')));
+new Handlebars($templates, new Dates(null));
+
+// Pass named date format
+new Handlebars($templates, new Dates(null, ['us:short' => 'Y-m-d']));
+```
 
 The `date` helper accepts anything the `util.Date` class accepts as constructor argument, or a `util.Date` instance itself. To format the date, the `format` argument can be used with anything the `util.Date::toString()` method accepts. Here are some examples:
 
@@ -64,6 +78,7 @@ The `date` helper accepts anything the `util.Date` class accepts as constructor 
 {{date 1613209181279 timestamp="ms"}}
 {{date created}}
 {{date created format="d.m.Y"}}
+{{date created format="us:short"}}
 ```
 
 ### Logging
