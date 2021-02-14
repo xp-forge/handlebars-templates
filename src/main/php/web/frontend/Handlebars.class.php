@@ -2,7 +2,7 @@
 
 use com\github\mustache\TemplateLoader;
 use com\handlebarsjs\{HandlebarsEngine, FilesIn};
-use util\Date;
+use util\{Date, Objects};
 
 /**
  * Handlebars-based template engine for web frontends.
@@ -22,6 +22,11 @@ class Handlebars implements Templates {
   public function __construct($templates) {
     $this->backing= (new HandlebarsEngine())
       ->withTemplates($templates instanceof TemplateLoader ? $templates : new FilesIn($templates))
+      ->withLogger(function($args) {
+        foreach ($args as $arg) {
+          echo '  ', Objects::stringOf($arg, '  '), "\n";
+        }
+      })
       ->withHelper('encode', function($in, $context, $options) {
         return rawurlencode($options[0] ?? '');
       })
