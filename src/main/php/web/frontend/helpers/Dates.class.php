@@ -24,13 +24,13 @@ class Dates extends Extension {
       static $resolution= ['s' => 1, 'ms' => 1000];
 
       if (!isset($options[0])) {
-        $d= Date::now();
+        $d= Date::now($this->timezone);
       } else if ($options[0] instanceof Date) {
-        $d= $options[0];
+        $d= $this->timezone->translate($options[0]);
       } else if ($r= $options['timestamp'] ?? null) {
-        $d= new Date('@'.(int)($options[0] / $resolution[$r]));
+        $d= new Date('@'.(int)($options[0] / $resolution[$r]), $this->timezone);
       } else {
-        $d= new Date($options[0]);
+        $d= $this->timezone->translate(new Date($options[0]));
       }
 
       return $d->toString($this->formats[$options['format'] ?? null] ?? $options['format']);
