@@ -3,7 +3,7 @@
 use com\github\mustache\TemplateLoader;
 use com\handlebarsjs\{HandlebarsEngine, FilesIn};
 use util\Objects;
-use web\frontend\helpers\{Extension, Arrays, Essentials};
+use web\frontend\helpers\{Extension, Essentials};
 
 /**
  * Handlebars-based template engine for web frontends.
@@ -34,7 +34,6 @@ class Handlebars implements Templates {
     ;
 
     $this->using(new Essentials());
-    $this->using(new Arrays());
     foreach ($extensions as $extension) {
       $this->using($extension);
     }
