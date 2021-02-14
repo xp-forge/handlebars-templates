@@ -3,6 +3,13 @@ Handlebars for XP web frontends change log
 
 ## ?.?.? / ????-??-??
 
+* Implemented basic timezone handling by passing default timezone to
+  the `web.frontend.helpers.Dates` helpers extension.
+  (@thekid)
+* Merged PR #4: Make template engine extensible; and extract the hard
+  wired date formatting to its own extension
+  (@thekid)
+
 ## 0.4.0 / 2021-02-14
 
 * Merged PR #2: Logging. Using the development webserver, this will show
