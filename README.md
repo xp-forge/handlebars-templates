@@ -65,7 +65,8 @@ new Handlebars($templates, new Dates());
 new Handlebars($templates, new Dates(new TimeZone('Europe/Berlin')));
 new Handlebars($templates, new Dates(null));
 
-// Pass named date format
+// Pass default and named date format
+new Handlebars($templates, new Dates(null, [null => 'd.m.Y']));
 new Handlebars($templates, new Dates(null, ['us:short' => 'Y-m-d']));
 ```
 

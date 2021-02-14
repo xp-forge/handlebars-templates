@@ -10,8 +10,8 @@ class DatesTest extends HandlebarsTest {
   /** @return web.frontend.Extension[] */
   protected function extensions() {
     return [new Dates(null, [
-      null  => self::FORMAT,
-      '@us' => 'Y-m-d',
+      null       => self::FORMAT,
+      'us:short' => 'Y-m-d',
     ])];
   }
 
@@ -34,7 +34,7 @@ class DatesTest extends HandlebarsTest {
   public function dates_with_named_format($date) {
     Assert::equals(
       '2021-02-13',
-      $this->transform('{{date tested format="@us"}}', ['tested' => $date])
+      $this->transform('{{date tested format="us:short"}}', ['tested' => $date])
     );
   }
 
