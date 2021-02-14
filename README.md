@@ -65,3 +65,20 @@ The `date` helper accepts anything the `util.Date` class accepts as constructor 
 {{date created}}
 {{date created format="d.m.Y"}}
 ```
+
+### Logging
+
+The `log` helper will echo the arguments passed to it:
+
+```handlebars
+{{log user}}
+{{log "User profile:" user}}
+```
+
+When using the development webserver, this shows the debug page:
+
+![Debug page](https://user-images.githubusercontent.com/696742/107873960-89cdc800-6eb6-11eb-954b-8b00324cce74.png)
+
+In production environments, logs will end up on the server's standard output:
+
+![Console output](https://user-images.githubusercontent.com/696742/107874105-838c1b80-6eb7-11eb-8c7e-ee257ef1d92d.png)

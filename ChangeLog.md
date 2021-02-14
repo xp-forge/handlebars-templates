@@ -3,6 +3,13 @@ Handlebars for XP web frontends change log
 
 ## ?.?.? / ????-??-??
 
+## 0.4.0 / 2021-02-14
+
+* Merged PR #2: Logging. Using the development webserver, this will show
+  the debug page - for production, the content will be written to the
+  server's standard output.
+  (@thekid)
+
 ## 0.3.0 / 2021-02-13
 
 * Add support for milliseconds resolution in timestamps to `date` helper,
