@@ -2,7 +2,8 @@
 
 use com\github\mustache\TemplateLoader;
 use com\handlebarsjs\{HandlebarsEngine, FilesIn};
-use util\{Date, Objects};
+use util\Objects;
+use web\frontend\helpers\{Extension, Arrays, Dates, Essentials};
 
 /**
  * Handlebars-based template engine for web frontends.
@@ -29,77 +30,19 @@ class Handlebars implements Templates {
         }
         echo "\n";
       })
-      ->withHelper('encode', function($in, $context, $options) {
-        return rawurlencode($options[0] ?? '');
-      })
-      ->withHelper('equals', function($in, $context, $options) {
-        return (int)(($options[0] ?? null) === ($options[1] ?? null));
-      })
-      ->withHelper('contains', function($in, $context, $options) {
-        if (!isset($options[0])) {
-          return 0;
-        } else if (is_array($options[0])) {
-          return (int)in_array($options[1] ?? null, $options[0]);
-        } else {
-          return false === strpos($options[0], $options[1] ?? null) ? 0 : 1;
-        }
-      })
-      ->withHelper('size', function($in, $context, $options) {
-        if (!isset($options[0])) {
-          return 0;
-        } else if ($options[0] instanceof \Countable || is_array($options[0])) {
-          return sizeof($options[0]);
-        } else {
-          return strlen($options[0]);
-        }
-      })
-      ->withHelper('max', function($in, $context, $options) {
-        switch (sizeof($options)) {
-          case 0: return 0;
-          case 1: return max($options[0]);
-          default: return max($options);
-        }
-      })
-      ->withHelper('min', function($in, $context, $options) {
-        switch (sizeof($options)) {
-          case 0: return 0;
-          case 1: return min($options[0]);
-          default: return min($options);
-        }
-      })
-      ->withHelper('any', function($in, $context, $options) {
-        foreach ($options as $option) {
-          if ($context->isTruthy($option)) return 1;
-        }
-        return 0;
-      })
-      ->withHelper('none', function($in, $context, $options) {
-        foreach ($options as $option) {
-          if ($context->isTruthy($option)) return 0;
-        }
-        return 1;
-      })
-      ->withHelper('all', function($in, $context, $options) {
-        foreach ($options as $option) {
-          if (!$context->isTruthy($option)) return 0;
-        }
-        return empty($options) ? 0 : 1;
-      })
-      ->withHelper('date', function($in, $context, $options) {
-        static $resolution= ['s' => 1, 'ms' => 1000];
-
-        if (!isset($options[0])) {
-          $d= Date::now();
-        } else if ($options[0] instanceof Date) {
-          $d= $options[0];
-        } else if ($r= $options['timestamp'] ?? null) {
-          $d= new Date('@'.(int)($options[0] / $resolution[$r]));
-        } else {
-          $d= new Date($options[0]);
-        }
-        return $d->toString($options['format'] ?? 'd.m.Y');
-      })
     ;
+
+    $this->using(new Essentials());
+    $this->using(new Arrays());
+    $this->using(new Dates());
+  }
+
+  /** Adds helpers from the given extension */
+  public function using(Extension $extension): self {
+    foreach ($extension->helpers() as $name => $function) {
+      $this->backing->withHelper($name, $function);
+    }
+    return $this;
   }
 
   /**
