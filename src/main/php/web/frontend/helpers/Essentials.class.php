@@ -1,6 +1,7 @@
 <?php namespace web\frontend\helpers;
 
-class Essentials implements Extension {
+/** Built-in and automatically loaded essentials */
+class Essentials extends Extension {
 
   /** @return iterable */
   public function helpers() {

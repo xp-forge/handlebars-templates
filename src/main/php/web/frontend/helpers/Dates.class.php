@@ -2,12 +2,16 @@
 
 use util\{Date, TimeZone};
 
-class Dates implements Extension {
+/** Date helper */
+class Dates extends Extension {
   private $timezone, $formats;
 
   /**
    * Creates new dates extension using the given timezone and optional
    * named formats to be used with the `format` parameter.
+   *
+   * @param  util.TimeZone $timezone Pass NULL to use local timezone
+   * @param  [:string] $formats Named formats
    */
   public function __construct(TimeZone $timezone= null, $formats= []) {
     $this->timezone= $timezone ?? TimeZone::getLocal();

@@ -1,7 +1,8 @@
 <?php namespace web\frontend\helpers;
 
-interface Extension {
+/** Base class for all extensions */
+abstract class Extension {
 
   /** @return iterable */
-  public function helpers();
+  public abstract function helpers();
 }
