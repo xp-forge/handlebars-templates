@@ -72,6 +72,7 @@ The `log` helper will echo the arguments passed to it:
 
 ```handlebars
 {{log user}}
+{{log "User profile:" user}}
 ```
 
 When using the development webserver, this shows the debug page:

@@ -23,9 +23,11 @@ class Handlebars implements Templates {
     $this->backing= (new HandlebarsEngine())
       ->withTemplates($templates instanceof TemplateLoader ? $templates : new FilesIn($templates))
       ->withLogger(function($args) {
+        echo '  ';
         foreach ($args as $arg) {
-          echo '  ', Objects::stringOf($arg, '  '), "\n";
+          echo is_string($arg) ? $arg : Objects::stringOf($arg, '  '), ' ';
         }
+        echo "\n";
       })
       ->withHelper('encode', function($in, $context, $options) {
         return rawurlencode($options[0] ?? '');

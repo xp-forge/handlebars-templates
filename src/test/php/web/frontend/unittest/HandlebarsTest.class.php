@@ -154,9 +154,9 @@ class HandlebarsTest {
   #[Test]
   public function logging_echoes_content() {
     ob_start();
-    $this->transform('{{log "Hello" user}}', ['user' => 'test']);
+    $this->transform('{{log "User:" user}}', ['user' => ['id' => 'test']]);
     $logged= ob_get_clean();
 
-    Assert::equals("  \"Hello\"\n  \"test\"\n", $logged);
+    Assert::equals("  User: [\n    id => \"test\"\n  ] \n", $logged);
   }
 }
