@@ -40,5 +40,20 @@ class Numbers extends Extension {
         $this->thousands
       )]);
     };
+    yield 'count' => function($in, $context, $options) {
+      $n= $options[0];
+      if (0 === $n) {
+        return $options[1];
+      } else if (1 === $n) {
+        return $options[2];
+      } else {
+        return strtr($options[3], ['#' => number_format(
+          $n,
+          $options['decimals'] ?? strlen(strstr($n, '.')) - 1,
+          $this->decimals,
+          $this->thousands
+        )]);
+      }
+    };
   }
 }

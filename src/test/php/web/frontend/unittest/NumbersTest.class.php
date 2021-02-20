@@ -44,4 +44,9 @@ class NumbersTest extends HandlebarsTest {
   public function percentages_with_decimals($number, $expected) {
     Assert::equals($expected, $this->transform('{{percent fixture decimals=1}}', ['fixture' => $number]));
   }
+
+  #[Test, Values([[0, 'no items'], [1, 'one item'], [2, '2 items']])]
+  public function count($number, $expected) {
+    Assert::equals($expected, $this->transform('{{count fixture "no items" "one item" "# items"}}', ['fixture' => $number]));
+  }
 }
