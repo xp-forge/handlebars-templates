@@ -17,7 +17,6 @@ Wiring happens inside your web application:
 ```php
 use web\frontend\{Frontend, AssetsFrom, HandlersIn, Handlebars};
 use web\Application;
-use io\Path;
 
 class App extends Application {
 
@@ -27,8 +26,7 @@ class App extends Application {
       '/static' => new AssetsFrom($this->environment->path('src/main/webapp')),
       '/'       => new Frontend(
         new HandlersIn('com.example.app.web'),
-        new Handlebars($this->environment->path('src/main/handlebars')),
-        '/'
+        new Handlebars($this->environment->path('src/main/handlebars'))
       )
     ];
   }
