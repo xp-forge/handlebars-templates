@@ -25,7 +25,7 @@ abstract class HandlebarsTest {
    */
   protected function transform($template, $context= []) {
     $out= new MemoryOutputStream();
-    $fixture= new Handlebars($this->templates->add('fixture', $template), ...$this->extensions());
+    $fixture= new Handlebars($this->templates->add('fixture', $template), $this->extensions());
     $fixture->write('fixture', $context, $out);
     return $out->bytes();
   }

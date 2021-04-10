@@ -3,6 +3,11 @@ Handlebars for XP web frontends change log
 
 ## ?.?.? / ????-??-??
 
+## 0.6.0 / 2021-04-10
+
+* Changed constructor argument *extensions* from vararg to array
+  (@thekid)
+
 ## 0.5.2 / 2021-04-10
 
 * Made compatible with `xp-forge/frontend` version 3.0 - @thekid

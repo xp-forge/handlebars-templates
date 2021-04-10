@@ -58,15 +58,15 @@ use util\TimeZone;
 use web\frontend\Handlebars;
 use web\frontend\helpers\Dates;
 
-new Handlebars($templates, new Dates());
+new Handlebars($templates, [new Dates()]);
 
 // Pass timezone or NULL to use local timezone
-new Handlebars($templates, new Dates(new TimeZone('Europe/Berlin')));
-new Handlebars($templates, new Dates(null));
+new Handlebars($templates, [new Dates(new TimeZone('Europe/Berlin'))]);
+new Handlebars($templates, [new Dates(null)]);
 
 // Pass default and named date format
-new Handlebars($templates, new Dates(null, [null => 'd.m.Y']));
-new Handlebars($templates, new Dates(null, ['us:short' => 'Y-m-d']));
+new Handlebars($templates, [new Dates(null, [null => 'd.m.Y'])]);
+new Handlebars($templates, [new Dates(null, ['us:short' => 'Y-m-d'])]);
 ```
 
 The `date` helper accepts anything the `util.Date` class accepts as constructor argument, or a `util.Date` instance itself. To format the date, the `format` argument can be used with anything the `util.Date::toString()` method accepts. Here are some examples:

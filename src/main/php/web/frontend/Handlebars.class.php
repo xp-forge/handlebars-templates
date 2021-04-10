@@ -19,9 +19,9 @@ class Handlebars implements Templates {
    * either a reference to a filesystem path, or using an in-memory loader 
    *
    * @param  string|io.Path|io.Folder|com.github.mustache.TemplateLoader $templates 
-   * @param  web.frontend.helpers.Extension... $extensions
+   * @param  web.frontend.helpers.Extension[] $extensions
    */
-  public function __construct($templates, Extension... $extensions) {
+  public function __construct($templates, array $extensions= []) {
     $this->backing= (new HandlebarsEngine())
       ->withTemplates($templates instanceof TemplateLoader ? $templates : new FilesIn($templates))
       ->withLogger(function($args) {
