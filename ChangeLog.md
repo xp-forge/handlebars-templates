@@ -3,6 +3,10 @@ Handlebars for XP web frontends change log
 
 ## ?.?.? / ????-??-??
 
+## 0.5.2 / 2021-04-10
+
+* Made compatible with `xp-forge/frontend` version 3.0 - @thekid
+
 ## 0.5.1 / 2021-02-14
 
 * Fixed timezone handling in conjunction with `timestamp` parameter
