@@ -15,8 +15,7 @@ Example
 Wiring happens inside your web application:
 
 ```php
-use web\frontend\{Frontend, HandlersIn, Handlebars};
-use web\handler\FilesFrom;
+use web\frontend\{Frontend, AssetsFrom, HandlersIn, Handlebars};
 use web\Application;
 use io\Path;
 
@@ -25,7 +24,7 @@ class App extends Application {
   /** Returns routing for this web application */
   public function routes() {
     return [
-      '/static' => new FilesFrom($this->environment->path('src/main/webapp')),
+      '/static' => new AssetsFrom($this->environment->path('src/main/webapp')),
       '/'       => new Frontend(
         new HandlersIn('com.example.app.web'),
         new Handlebars($this->environment->path('src/main/handlebars')),
