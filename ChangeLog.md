@@ -3,6 +3,11 @@ Handlebars for XP web frontends change log
 
 ## ?.?.? / ????-??-??
 
+## 0.7.0 / 2021-04-11
+
+* Added `assets` helper which logs missing assets, implementing #6
+  (@thekid)
+
 ## 0.6.0 / 2021-04-10
 
 * Changed constructor argument *extensions* from vararg to array
