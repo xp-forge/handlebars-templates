@@ -2,13 +2,21 @@
 
 use web\frontend\AssetsManifest;
 
-/** Fingerprinted assets */
+/**
+ * Helper for fingerprinted assets
+ *
+ * @test  web.frontend.unittest.AssetsTest
+ */
 class Assets extends Extension {
   private $manifest;
 
-  /** Creates a new assets extension from a given assets manifest */
-  public function __construct(AssetsManifest $manifest) {
-    $this->manifest= $manifest;
+  /**
+   * Creates a new assets extension from a given assets manifest
+   *
+   * @param  web.frontend.AssetsManifest|[:string] $manifest
+   */
+  public function __construct($manifest) {
+    $this->manifest= $manifest instanceof AssetsManifest ? $manifest->assets : $manifest;
   }
 
   /** @return iterable */
@@ -17,10 +25,10 @@ class Assets extends Extension {
       $name= (string)$options[0];
 
       // We can rely on a logger being present, web.frontend.Handlebars creates one
-      return $this->manifest->assets[$name] ?? key([$name => $context->engine->helper('log')(
+      return $this->manifest[$name] ?? key([$name => $context->engine->helper('log')(
         $in,
         $context,
-        ['Missing asset in `'.(string)$in.'`, manifest contains: ', $this->manifest->assets]
+        ['Missing asset in `'.(string)$in.'`, manifest contains:', $this->manifest]
       )]);
     };
   }
