@@ -31,6 +31,6 @@ class AssetsTest extends HandlebarsTest {
     $this->transform('{{asset "nonexistant.css"}}');
     $log= ob_get_clean();
 
-    Assert::equals('Missing asset in `{{asset "nonexistant.css"}}`', trim(strstr($log, ',', true)));
+    Assert::equals('[error] Missing asset in `{{asset "nonexistant.css"}}`', trim(strstr($log, ',', true)));
   }
 }

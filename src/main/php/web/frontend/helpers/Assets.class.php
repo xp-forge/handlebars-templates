@@ -28,7 +28,7 @@ class Assets extends Extension {
       return $this->manifest[$name] ?? key([$name => $context->engine->helper('log')(
         $in,
         $context,
-        ['Missing asset in `'.(string)$in.'`, manifest contains:', $this->manifest]
+        ['Missing asset in `'.(string)$in.'`, manifest contains:', $this->manifest, 'level' => 'error']
       )]);
     };
   }

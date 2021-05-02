@@ -3,6 +3,16 @@ Handlebars for XP web frontends change log
 
 ## ?.?.? / ????-??-??
 
+## 0.8.0 / 2021-05-02
+
+* Added compatibility with `xp-forge/handlebars` version 6.0:
+  - Single quotes are now escaped as `&#039;`
+  - Log levels supplied via `level="..."` are now shown
+  - Missing assets use log level *error*
+  - Now supports block params, e.g. `#{{with ... as |alias|}}`
+  - Now supports `else if` syntactic sugar
+  (@thekid)
+
 ## 0.7.0 / 2021-04-11
 
 * Added `assets` helper which logs missing assets, implementing #6

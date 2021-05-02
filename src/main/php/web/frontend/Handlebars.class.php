@@ -24,8 +24,8 @@ class Handlebars implements Templates {
   public function __construct($templates, array $extensions= []) {
     $this->backing= (new HandlebarsEngine())
       ->withTemplates($templates instanceof TemplateLoader ? $templates : new FilesIn($templates))
-      ->withLogger(function($args) {
-        echo '  ';
+      ->withLogger(function($args, $level= 'info') {
+        echo '  ['.$level.'] ';
         foreach ($args as $arg) {
           echo is_string($arg) ? $arg : Objects::stringOf($arg, '  '), ' ';
         }
