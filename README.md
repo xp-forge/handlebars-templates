@@ -33,7 +33,31 @@ class App extends Application {
 }
 ```
 
+Templates
+---------
 The templates live in `src/main/handlebars`, their names corresponding to lowercased version of the handlers' names (`Home::class` => `home.handlebars`).
+
+Templates support YAML front matter, which can be used to set defaults for template globals. Example:
+
+```handlebars
+---
+nav:
+  /: Home
+  /about: About
+  /login: Login
+---
+<!DOCTYPE html>
+<html lang="en">
+  <head>...</head>
+  <body>
+    <nav>
+      {{#each nav}}
+        <a href="{{@key}}">{{.}}</a>
+      {{/each}}
+    </nav>
+  </body>
+</html>
+```
 
 Helpers
 -------
