@@ -1,6 +1,7 @@
 <?php namespace web\frontend\unittest;
 
-use unittest\{Assert, Test};
+use com\github\mustache\TemplateFormatException;
+use unittest\{Assert, Expect, Test};
 
 class YamlFrontMatterTest extends HandlebarsTest {
 
@@ -14,16 +15,21 @@ class YamlFrontMatterTest extends HandlebarsTest {
     Assert::equals('Works', $this->transform("---\n---\n{{it}}", ['it' => 'Works']));
   }
 
+  #[Test, Expect(class: TemplateFormatException::class, withMessage: 'Unclosed YAML front matter')]
+  public function unclosed_matter() {
+    $this->transform("---\n");
+  }
+
   #[Test]
-  public function nav_array() {
-    Assert::equals('Home | About | Login', $this->transform(
+  public function used_for_navigation_setup() {
+    Assert::equals('/:Home | /about:About | /login:Login', $this->transform(
       "---\n".
       "nav:\n".
-      "- Home\n".
-      "- About\n".
-      "- Login\n".
+      "  /: Home\n".
+      "  /about: About\n".
+      "  /login: Login\n".
       "---\n".
-      "{{#each nav}}{{.}}{{#unless @last}} | {{/unless}}{{/each}}",
+      "{{#each nav}}{{@key}}:{{.}}{{#unless @last}} | {{/unless}}{{/each}}",
       []
     ));
   }
