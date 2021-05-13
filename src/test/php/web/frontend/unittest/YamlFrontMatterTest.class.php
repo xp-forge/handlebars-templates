@@ -15,6 +15,11 @@ class YamlFrontMatterTest extends HandlebarsTest {
     Assert::equals('Works', $this->transform("---\n---\n{{it}}", ['it' => 'Works']));
   }
 
+  #[Test]
+  public function matter_overwritable_by_context() {
+    Assert::equals('Works', $this->transform("---\nit: Defaults\n---\n{{it}}", ['it' => 'Works']));
+  }
+
   #[Test, Expect(class: TemplateFormatException::class, withMessage: 'Unclosed YAML front matter')]
   public function unclosed_matter() {
     $this->transform("---\n");
@@ -22,14 +27,14 @@ class YamlFrontMatterTest extends HandlebarsTest {
 
   #[Test]
   public function used_for_navigation_setup() {
-    Assert::equals('/:Home | /about:About | /login:Login', $this->transform(
+    Assert::equals('[Home](/) | [About](/about) | [Login](/login)', $this->transform(
       "---\n".
       "nav:\n".
       "  /: Home\n".
       "  /about: About\n".
       "  /login: Login\n".
       "---\n".
-      "{{#each nav}}{{@key}}:{{.}}{{#unless @last}} | {{/unless}}{{/each}}",
+      "{{#each nav}}[{{.}}]({{@key}}){{#unless @last}} | {{/unless}}{{/each}}",
       []
     ));
   }
