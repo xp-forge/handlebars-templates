@@ -7,7 +7,7 @@ class FrontMatter extends Decoration {
   /** @param [:var] $pairs */
   public function __construct($pairs) {
     parent::__construct('*yfm', []);
-    $this->pairs= $pairs;
+    $this->pairs= (array)$pairs;
   }
 
   /**
