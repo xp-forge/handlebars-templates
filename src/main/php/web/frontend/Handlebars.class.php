@@ -12,7 +12,12 @@ use web\frontend\helpers\{Extension, Essentials};
  * @see   https://handlebarsjs.com/
  */
 class Handlebars implements Templates {
+  private static $parser;
   private $backing;
+
+  static function __static() {
+    self::$parser= new TemplateParser();
+  }
 
   /**
    * Creates a new handlebars-based template engine. Templates can be supplied as
@@ -22,7 +27,7 @@ class Handlebars implements Templates {
    * @param  web.frontend.helpers.Extension[] $extensions
    */
   public function __construct($templates, array $extensions= []) {
-    $this->backing= (new HandlebarsEngine())
+    $this->backing= (new HandlebarsEngine(self::$parser))
       ->withTemplates($templates instanceof TemplateLoader ? $templates : new FilesIn($templates))
       ->withLogger(function($args, $level= 'info') {
         echo '  ['.$level.'] ';
