@@ -3,6 +3,13 @@ Handlebars for XP web frontends change log
 
 ## ?.?.? / ????-??-??
 
+## 0.9.0 / 2021-05-13
+
+* Merged PR #8 - Support YAML front matter. Implements feature present
+  in a broad variety of frontend templating systems, inlcuding Jekyll,
+  Hugo and NuxtJS
+  (@thekid)
+
 ## 0.8.0 / 2021-05-02
 
 * Added compatibility with `xp-forge/handlebars` version 6.0:
