@@ -25,21 +25,23 @@ class TemplateParser extends HandlebarsParser {
    * @throws com.github.mustache.TemplateFormatException
    */
   public function parse(Tokenizer $tokens, $start= '{{', $end= '}}', $indent= '') {
+    $tokens->returnDelims= true;
 
     // Check presence of YFM
     $peek= $tokens->nextToken("\n");
     if ('---' === $peek) {
       $yaml= '';
       while ($more= $tokens->hasMoreTokens()) {
-        $line= $tokens->nextToken("\n");
-        if ('---' === $line) break;
-        $yaml.= $line."\n";
+        $t= $tokens->nextToken("\n");
+        if ('---' === $t) break;
+        $yaml.= $t;
       }
 
       if (!$more) {
         throw new TemplateFormatException('Unclosed YAML front matter');
       }
 
+      $tokens->nextToken("\n");
       $nodes= parent::parse($tokens, $start, $end, $indent);
       $nodes->decorate(new FrontMatter((self::$yaml ?? self::$yaml= new YamlParser())->parse(new StringInput($yaml))));
       return $nodes;
