@@ -3,6 +3,12 @@ Handlebars for XP web frontends change log
 
 ## ?.?.? / ????-??-??
 
+## 1.0.0 / 2021-07-17
+
+* Merged PR #5 - Add `web.frontend.helpers.Numbers` to format numbers
+  and percentages. Provides *number*, *percent* and *count* helpers.
+  (@thekid)
+
 ## 0.9.0 / 2021-05-13
 
 * Merged PR #8 - Support YAML front matter. Implements feature present
