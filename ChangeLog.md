@@ -3,6 +3,12 @@ Handlebars for XP web frontends change log
 
 ## ?.?.? / ????-??-??
 
+## 1.0.1 / 2021-10-21
+
+* Made library compatible with XP 11, `xp-forge/handlebars` version
+  7.0.0
+  (@thekid)
+
 ## 1.0.0 / 2021-07-17
 
 * Merged PR #5 - Add `web.frontend.helpers.Numbers` to format numbers
