@@ -26,18 +26,18 @@ class ClassTest extends HandlebarsTest {
   #[Test]
   public function logging_echoes_content() {
     ob_start();
-    $this->transform('{{log "User:" user}}', ['user' => ['id' => 'test']]);
+    $this->transform('{{log "User:" user}}', ['user' => ['id' => 0, 'name' => 'Test']]);
     $logged= ob_get_clean();
 
-    Assert::equals("  [info] User: [\n    id => \"test\"\n  ] \n", $logged);
+    Assert::equals("  [info] User: [\n    id => 0\n    name => \"Test\"\n  ] \n", $logged);
   }
 
   #[Test]
   public function logging_can_use_loglevels() {
     ob_start();
-    $this->transform('{{log "User:" user level="warn"}}', ['user' => ['id' => 'test']]);
+    $this->transform('{{log "User:" user level="warn"}}', ['user' => ['id' => 0, 'name' => 'Test']]);
     $logged= ob_get_clean();
 
-    Assert::equals("  [warn] User: [\n    id => \"test\"\n  ] \n", $logged);
+    Assert::equals("  [warn] User: [\n    id => 0\n    name => \"Test\"\n  ] \n", $logged);
   }
 }

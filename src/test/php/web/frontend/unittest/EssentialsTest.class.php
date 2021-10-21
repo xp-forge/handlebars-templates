@@ -44,7 +44,7 @@ class EssentialsTest extends HandlebarsTest {
       'test'    => 'Test',
       'numbers' => [1, 2, 3],
       'sizes'   => ['S' => 12.99, 'M' => 13.99],
-      'count'   => new class() implements \Countable { public function count() { return 1; } },
+      'count'   => new class() implements \Countable { public function count(): int { return 1; } },
       'empty'   => [],
     ]));
   }
