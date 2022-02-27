@@ -2,7 +2,7 @@
 
 /** Number formatting helper */
 class Numbers extends Extension {
-  private $decimals, $thousands;
+  private $decimals, $thousands, $percent;
 
   /**
    * Creates new numbers formatting helper with given decimals and

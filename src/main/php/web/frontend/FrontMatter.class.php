@@ -3,6 +3,7 @@
 use com\handlebarsjs\Decoration;
 
 class FrontMatter extends Decoration {
+  private $pairs;
 
   /** @param [:var] $pairs */
   public function __construct($pairs) {
