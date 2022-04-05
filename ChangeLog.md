@@ -3,6 +3,10 @@ Handlebars for XP web frontends change log
 
 ## ?.?.? / ????-??-??
 
+## 1.1.0 / 2022-04-05
+
+* Merged PR #9: Add helper functions extension - @thekid
+
 ## 1.0.2 / 2022-02-27
 
 * Fixed "Creation of dynamic property" warnings in PHP 8.2 - @thekid
