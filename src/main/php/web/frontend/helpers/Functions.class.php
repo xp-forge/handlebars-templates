@@ -2,6 +2,7 @@
 
 /** Helper functions */
 class Functions extends Extension {
+  private $named;
 
   /**
    * Creates new functions extension
