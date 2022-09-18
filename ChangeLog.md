@@ -3,6 +3,10 @@ Handlebars for XP web frontends change log
 
 ## ?.?.? / ????-??-??
 
+## 1.2.0 / 2022-09-18
+
+* Merged PR #10: Allow passing maps to extensions - @thekid
+
 ## 1.1.0 / 2022-04-05
 
 * Merged PR #9: Add helper functions extension - @thekid
