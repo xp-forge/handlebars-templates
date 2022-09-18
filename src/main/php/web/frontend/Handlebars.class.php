@@ -24,7 +24,7 @@ class Handlebars implements Templates {
    * either a reference to a filesystem path, or using an in-memory loader 
    *
    * @param  string|io.Path|io.Folder|com.github.mustache.TemplateLoader $templates 
-   * @param  web.frontend.helpers.Extension[] $extensions
+   * @param  [:var][]|web.frontend.helpers.Extension[] $extensions
    */
   public function __construct($templates, array $extensions= []) {
     $this->backing= (new HandlebarsEngine(self::$parser))
@@ -44,9 +44,14 @@ class Handlebars implements Templates {
     }
   }
 
-  /** Adds helpers from the given extension */
-  public function using(Extension $extension): self {
-    foreach ($extension->helpers() as $name => $function) {
+  /**
+   * Adds helpers from the given extension
+   *
+   * @param  [:var]|web.frontend.helpers.Extension $extension
+   */
+  public function using($extension): self {
+    $it= $extension instanceof Extension ? $extension->helpers() : $extension;
+    foreach ($it as $name => $function) {
       $this->backing->withHelper($name, $function);
     }
     return $this;
