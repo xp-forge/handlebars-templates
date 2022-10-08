@@ -3,6 +3,10 @@ Handlebars for XP web frontends change log
 
 ## ?.?.? / ????-??-??
 
+## 2.0.0 / 2022-10-08
+
+* Upgrade to `xp-forge/handlebars` version 8.0.0 - @thekid
+
 ## 1.2.0 / 2022-09-18
 
 * Merged PR #10: Allow passing maps to extensions - @thekid
