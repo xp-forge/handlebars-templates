@@ -3,6 +3,10 @@ Handlebars for XP web frontends change log
 
 ## ?.?.? / ????-??-??
 
+## 2.1.0 / 2022-10-29
+
+* Made compatible with `xp-forge/frontend` version 4.0.0 - @thekid
+
 ## 2.0.0 / 2022-10-08
 
 * Upgrade to `xp-forge/handlebars` version 8.0.0 - @thekid
