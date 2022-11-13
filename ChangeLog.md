@@ -3,6 +3,10 @@ Handlebars for XP web frontends change log
 
 ## ?.?.? / ????-??-??
 
+## 2.2.0 / 2022-11-13
+
+* Cast input argument to integer in `count` helper - @thekid
+
 ## 2.1.0 / 2022-10-29
 
 * Made compatible with `xp-forge/frontend` version 4.0.0 - @thekid

@@ -41,7 +41,7 @@ class Numbers extends Extension {
       )]);
     };
     yield 'count' => function($in, $context, $options) {
-      $n= $options[0];
+      $n= (int)$options[0];
       if (0 === $n) {
         return $options[1];
       } else if (1 === $n) {

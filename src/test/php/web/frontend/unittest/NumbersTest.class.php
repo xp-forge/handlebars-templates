@@ -49,4 +49,9 @@ class NumbersTest extends HandlebarsTest {
   public function count($number, $expected) {
     Assert::equals($expected, $this->transform('{{count fixture "no items" "one item" "# items"}}', ['fixture' => $number]));
   }
+
+  #[Test, Values([['0', 'no items'], [null, 'no items'], [false, 'no items'], ['1', 'one item'], ['2', '2 items']])]
+  public function count_casts_to_integer($number, $expected) {
+    Assert::equals($expected, $this->transform('{{count fixture "no items" "one item" "# items"}}', ['fixture' => $number]));
+  }
 }
