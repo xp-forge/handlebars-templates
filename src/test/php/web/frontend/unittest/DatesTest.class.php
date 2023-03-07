@@ -1,6 +1,6 @@
 <?php namespace web\frontend\unittest;
 
-use unittest\{Assert, Test, Values};
+use test\{Assert, Test, Values};
 use util\{Date, TimeZone};
 use web\frontend\helpers\Dates;
 
@@ -24,7 +24,7 @@ class DatesTest extends HandlebarsTest {
     yield 1613215800;
   }
 
-  #[Test, Values('dates')]
+  #[Test, Values(from: 'dates')]
   public function dates_with_format($date) {
     Assert::equals(
       '2021-02-13',
@@ -32,7 +32,7 @@ class DatesTest extends HandlebarsTest {
     );
   }
 
-  #[Test, Values('dates')]
+  #[Test, Values(from: 'dates')]
   public function dates_with_named_format($date) {
     Assert::equals(
       '02/13/2021',
@@ -40,7 +40,7 @@ class DatesTest extends HandlebarsTest {
     );
   }
 
-  #[Test, Values('dates')]
+  #[Test, Values(from: 'dates')]
   public function dates_with_default_format($date) {
     Assert::equals(
       '13.02.2021',
@@ -58,7 +58,7 @@ class DatesTest extends HandlebarsTest {
     Assert::equals('13.02.2021', $this->transform($template));
   }
 
-  #[Test, Values('dates')]
+  #[Test, Values(from: 'dates')]
   public function converted_to_default_timezone($date) {
     Assert::equals(
       '13.02.2021 22:30:00',
@@ -66,7 +66,7 @@ class DatesTest extends HandlebarsTest {
     );
   }
 
-  #[Test, Values('dates')]
+  #[Test, Values(from: 'dates')]
   public function converted_to_supplied_timezone($date) {
     Assert::equals(
       '13.02.2021 06:30:00',

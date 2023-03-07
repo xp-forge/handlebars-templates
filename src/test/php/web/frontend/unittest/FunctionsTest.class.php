@@ -1,6 +1,6 @@
 <?php namespace web\frontend\unittest;
 
-use unittest\{Assert, Test, Values};
+use test\{Assert, Test, Values};
 use web\frontend\helpers\Functions;
 
 class FunctionsTest extends HandlebarsTest {
@@ -39,7 +39,7 @@ class FunctionsTest extends HandlebarsTest {
     ]));
   }
 
-  #[Test, Values('lists')]
+  #[Test, Values(from: 'lists')]
   public function and($list, $result) {
     Assert::equals($result, $this->transform('{{and people}}', ['people' => $list]));
   }
