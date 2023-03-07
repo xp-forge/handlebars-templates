@@ -1,6 +1,6 @@
 <?php namespace web\frontend\unittest;
 
-use unittest\{Assert, Test, Values};
+use test\{Assert, Test, Values};
 use web\frontend\AssetsManifest;
 use web\frontend\helpers\Assets;
 

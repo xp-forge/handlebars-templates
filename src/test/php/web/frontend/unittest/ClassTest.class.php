@@ -1,6 +1,6 @@
 <?php namespace web\frontend\unittest;
 
-use unittest\{Assert, Test};
+use test\{Assert, Test};
 use web\frontend\Handlebars;
 
 class ClassTest extends HandlebarsTest {

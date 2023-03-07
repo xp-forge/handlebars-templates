@@ -1,7 +1,7 @@
 <?php namespace web\frontend\unittest;
 
 use com\github\mustache\TemplateFormatException;
-use unittest\{Assert, Expect, Test};
+use test\{Assert, Expect, Test};
 
 class YamlFrontMatterTest extends HandlebarsTest {
 
@@ -20,7 +20,7 @@ class YamlFrontMatterTest extends HandlebarsTest {
     Assert::equals('Works', $this->transform("---\nit: Defaults\n---\n{{it}}", ['it' => 'Works']));
   }
 
-  #[Test, Expect(class: TemplateFormatException::class, withMessage: 'Unclosed YAML front matter')]
+  #[Test, Expect(class: TemplateFormatException::class, message: 'Unclosed YAML front matter')]
   public function unclosed_matter() {
     $this->transform("---\n");
   }
