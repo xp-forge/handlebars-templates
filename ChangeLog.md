@@ -3,6 +3,8 @@ Handlebars for XP web frontends change log
 
 ## ?.?.? / ????-??-??
 
+* Merged PR #11: Migrate to new testing library - @thekid
+
 ## 2.2.0 / 2022-11-13
 
 * Cast input argument to integer in `count` helper - @thekid
