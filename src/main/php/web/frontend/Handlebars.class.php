@@ -58,14 +58,26 @@ class Handlebars implements Templates {
   }
 
   /**
-   * Transforms a named template
+   * Transforms a named template and returns the result as a string.
+   *
+   * @param  string $name Template name
+   * @param  [:var] $context
+   * @return string
+   */
+  public function render($name, $context) {
+    return $this->backing->evaluate($this->backing->load($name), $context + ['scope' => $name]);
+  }
+
+  /**
+   * Transforms a named template, writing the result to a given output stream.
    *
    * @param  string $name Template name
    * @param  [:var] $context
    * @param  io.streams.OutputStream $out
-   * @return void
+   * @return io.streams.OutputStream
    */
   public function write($name, $context, $out) {
     $this->backing->write($this->backing->load($name), $context + ['scope' => $name], $out);
+    return $out;
   }
 }

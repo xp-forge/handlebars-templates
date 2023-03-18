@@ -1,5 +1,6 @@
 <?php namespace web\frontend\unittest;
 
+use io\streams\MemoryOutputStream;
 use test\{Assert, Test};
 use web\frontend\Handlebars;
 
@@ -13,6 +14,24 @@ class ClassTest extends HandlebarsTest {
   #[Test]
   public function can_create_with_path() {
     new Handlebars('src/main/handlebars');
+  }
+
+  #[Test]
+  public function render() {
+    $fixture= new Handlebars($this->templates->add('fixture', '<h1>Hello @{{user}}!</h1>'));
+    Assert::equals(
+      '<h1>Hello @test!</h1>',
+      $fixture->render('fixture', ['user' => 'test'])
+    );
+  }
+
+  #[Test]
+  public function write() {
+    $fixture= new Handlebars($this->templates->add('fixture', '<h1>Hello @{{user}}!</h1>'));
+    Assert::equals(
+      '<h1>Hello @test!</h1>',
+      $fixture->write('fixture', ['user' => 'test'], new MemoryOutputStream())->bytes()
+    );
   }
 
   #[Test]
