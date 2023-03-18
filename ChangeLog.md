@@ -3,6 +3,10 @@ Handlebars for XP web frontends change log
 
 ## ?.?.? / ????-??-??
 
+## 2.3.0 / 2023-03-18
+
+* Merged PR #12: Add render() method which returns the result as a string
+  (@thekid)
 * Merged PR #11: Migrate to new testing library - @thekid
 
 ## 2.2.0 / 2022-11-13
