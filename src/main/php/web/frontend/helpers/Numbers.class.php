@@ -26,7 +26,7 @@ class Numbers extends Extension {
       $n= $options[0];
       return number_format(
         $n,
-        $options['decimals'] ?? strlen(strstr($n, '.')) - 1,
+        $options['decimals'] ?? (false === ($p= strpos($n, '.')) ? 0 : strlen($n) - $p - 1),
         $this->decimals,
         $this->thousands
       );
@@ -35,7 +35,7 @@ class Numbers extends Extension {
       $n= $options[0] * 100;
       return strtr($this->percent, ['#' => number_format(
         $n,
-        $options['decimals'] ?? strlen(strstr($n, '.')) - 1,
+        $options['decimals'] ?? (false === ($p= strpos($n, '.')) ? 0 : strlen($n) - $p - 1),
         $this->decimals,
         $this->thousands
       )]);
@@ -49,7 +49,7 @@ class Numbers extends Extension {
       } else {
         return strtr($options[3], ['#' => number_format(
           $n,
-          $options['decimals'] ?? strlen(strstr($n, '.')) - 1,
+          $options['decimals'] ?? (false === ($p= strpos($n, '.')) ? 0 : strlen($n) - $p - 1),
           $this->decimals,
           $this->thousands
         )]);
