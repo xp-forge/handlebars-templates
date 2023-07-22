@@ -1,23 +1,32 @@
 <?php namespace web\frontend;
 
-use com\handlebarsjs\Decoration;
+use com\github\mustache\Node;
 
-class FrontMatter extends Decoration {
-  private $pairs;
+class WithFrontMatter extends Node {
+  private $nodes, $pairs;
 
-  /** @param [:var] $pairs */
-  public function __construct($pairs) {
-    parent::__construct('*yfm', []);
+  /**
+   * Creates new frontmatter
+   *
+   * @param  com.handlebarsjs.Nodes $nodes
+   * @param  [:var] $pairs
+   */
+  public function __construct($nodes, $pairs) {
+    $this->nodes= $nodes;
     $this->pairs= (array)$pairs;
   }
 
   /**
-   * Evaluates this decoration
+   * Evaluates this node
    *
    * @param  com.github.mustache.Context $context the rendering context
-   * @return void
+   * @param  io.streams.OutputStream $out
    */
-  public function enter($context) {
+  public function write($context, $out) {
     $context->variables+= $this->pairs;
+    $this->nodes->write($context, $out);
   }
+
+  /** @return string */
+  public function __toString() { return (string)$this->nodes; }
 }
