@@ -3,6 +3,9 @@ Handlebars for XP web frontends change log
 
 ## ?.?.? / ????-??-??
 
+* Merged PR #13: Refactor frontmatter to no longer use decorations API
+  (@thekid)
+
 ## 2.4.0 / 2023-07-22
 
 * Fixed PHP 8.3 compatibility in `number` helper. This is due to the
