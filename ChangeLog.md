@@ -3,6 +3,17 @@ Handlebars for XP web frontends change log
 
 ## ?.?.? / ????-??-??
 
+## 2.4.0 / 2023-07-22
+
+* Fixed PHP 8.3 compatibility in `number` helper. This is due to the
+  change how negative decimals were handled in *number_format()*. Before,
+  they were simply ignored (*which is what we relied on*), now they're
+  used for rounding, see https://github.com/php/php-src/pull/11487
+  (@thekid)
+* Added forward compatibility with `xp-forge/frontend` version 5.0, see
+  https://github.com/xp-forge/frontend/pull/37
+  (@thekid)
+
 ## 2.3.0 / 2023-03-18
 
 * Merged PR #12: Add render() method which returns the result as a string
