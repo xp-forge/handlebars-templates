@@ -42,9 +42,10 @@ class TemplateParser extends HandlebarsParser {
       }
 
       $tokens->nextToken("\n");
-      $nodes= parent::parse($tokens, $start, $end, $indent);
-      $nodes->decorate(new FrontMatter((self::$yaml ?? self::$yaml= new YamlParser())->parse(new StringInput($yaml))));
-      return $nodes;
+      return new WithFrontMatter(
+        parent::parse($tokens, $start, $end, $indent),
+        (self::$yaml ?? self::$yaml= new YamlParser())->parse(new StringInput($yaml))
+      );
     }
 
     // Just a regular template, delegate to parent
