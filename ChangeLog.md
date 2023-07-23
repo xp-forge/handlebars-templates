@@ -3,6 +3,9 @@ Handlebars for XP web frontends change log
 
 ## ?.?.? / ????-??-??
 
+* Made this library compatible with `xp-forge/handlebars` version 9.0,
+  see https://github.com/xp-forge/handlebars/pull/27
+  (@thekid)
 * Merged PR #13: Refactor frontmatter to no longer use decorations API
   (@thekid)
 
