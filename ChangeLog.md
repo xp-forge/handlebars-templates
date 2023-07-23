@@ -3,6 +3,8 @@ Handlebars for XP web frontends change log
 
 ## ?.?.? / ????-??-??
 
+## 2.5.0 / 2023-07-23
+
 * Made this library compatible with `xp-forge/handlebars` version 9.0,
   see https://github.com/xp-forge/handlebars/pull/27
   (@thekid)
