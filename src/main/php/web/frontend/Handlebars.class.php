@@ -8,7 +8,8 @@ use web\frontend\helpers\{Extension, Essentials};
 /**
  * Handlebars-based template engine for web frontends.
  *
- * @test  web.frontend.unittest.HandlebarsTest
+ * @test  web.frontend.unittest.ClassTest
+ * @test  web.frontend.unittest.InlineTest
  * @see   https://handlebarsjs.com/
  */
 class Handlebars implements Templates {
