@@ -1,7 +1,7 @@
 <?php namespace web\frontend;
 
 use com\github\mustache\TemplateFormatException;
-use com\handlebarsjs\HandlebarsParser;
+use com\handlebarsjs\{HandlebarsParser, BlockNode, Quoted, PartialBlockHelper};
 use org\yaml\{YamlParser, StringInput};
 use text\Tokenizer;
 
@@ -13,6 +13,20 @@ use text\Tokenizer;
  */
 class TemplateParser extends HandlebarsParser {
   private static $yaml;
+
+  /**
+   * Initialize this parser, adding support for fragments.
+   *
+   * @return void
+   */
+  protected function initialize() {
+    parent::initialize();
+    $this->blocks->register('*fragment', function($options, $state) {
+      $name= $options[0] instanceof Quoted ? $options[0]->chars : $options[0];
+      $state->target->add(new PartialBlockHelper([$name]));
+      return new BlockNode('fragment', [], $state->parents[0]->declare($name));
+    });
+  }
 
   /**
    * Parse a template
