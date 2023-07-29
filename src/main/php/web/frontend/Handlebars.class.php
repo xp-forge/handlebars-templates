@@ -87,7 +87,7 @@ class Handlebars implements Templates {
   public function render($name, $context, $fragment= null) {
     return $this->backing->evaluate(
       $this->template($name, $fragment),
-      $context + ['scope' => $name],
+      $context + ['scope' => $name]
     );
   }
 
