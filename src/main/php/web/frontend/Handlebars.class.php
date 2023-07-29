@@ -81,13 +81,13 @@ class Handlebars implements Templates {
    * Transforms a named template and returns the result as a string.
    *
    * @param  string $name Template name
-   * @param  var $context
+   * @param  [:var] $context
    * @return string
    */
   public function render($name, $context, $fragment= null) {
     return $this->backing->evaluate(
       $this->template($name, $fragment),
-      is_array($context) ? $context + ['scope' => $name] : $context
+      $context + ['scope' => $name],
     );
   }
 
@@ -95,14 +95,14 @@ class Handlebars implements Templates {
    * Transforms a named template, writing the result to a given output stream.
    *
    * @param  string $name Template name
-   * @param  var $context
+   * @param  [:var] $context
    * @param  io.streams.OutputStream $out
    * @return io.streams.OutputStream
    */
   public function write($name, $context, $out, $fragment= null) {
     $this->backing->write(
       $this->template($name, $fragment),
-      is_array($context) ? $context + ['scope' => $name] : $context,
+      $context + ['scope' => $name],
       $out
     );
     return $out;

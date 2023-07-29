@@ -19,7 +19,7 @@ abstract class HandlebarsTest {
    * template name) of "fixture".
    *
    * @param  string $template
-   * @param  var $context
+   * @param  [:var] $context
    * @param  ?string $fragment
    * @return string
    */
