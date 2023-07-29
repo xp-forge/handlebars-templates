@@ -15,14 +15,12 @@ class TemplateParser extends HandlebarsParser {
   private static $yaml;
 
   /**
-   * Initialize this parser.
+   * Initialize this parser, adding support for fragments.
    *
    * @return void
    */
   protected function initialize() {
     parent::initialize();
-
-    // Fragments are instantly-invoked inline partials
     $this->blocks->register('*fragment', function($options, $state) {
       $name= $options[0] instanceof Quoted ? $options[0]->chars : $options[0];
       $state->target->add(new PartialBlockHelper([$name]));
