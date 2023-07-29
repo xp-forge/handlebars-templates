@@ -61,26 +61,25 @@ nav:
 
 Fragments
 ---------
-Instead of rendering an entire template, we can render inline partials declared as follows:
+Instead of rendering an entire template, we can render special inline partials we call *fragments*. They are declared as follows:
 
 ```handlebars
 <!DOCTYPE html>
 <html lang="en">
   <head>...</head>
   <body>
-    {{#*inline "listing"}}
+    {{#*fragment "listing"}}
       <ul>
         {{#each items}}
           <li>{{.}}</li>
         {{/each}}
       </ul>
-    {{/inline}}
-    {{> listing}}
+    {{/fragment}}
   </body>
 </html>
 ```
 
-...by selecting them via *fragment()* in our handler:
+...and are rendered by selecting them via *fragment()* in our handler:
 
 ```php
 use web\frontend\{Handler, Get};

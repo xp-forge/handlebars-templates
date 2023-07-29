@@ -31,4 +31,13 @@ class InlineTest extends HandlebarsTest {
   public function non_existant($inline) {
     $this->transform($inline, null, 'non-existant');
   }
+
+  #[Test]
+  public function fragment() {
+    $template= 'Test: {{#*fragment "items"}}{{#each items}}* {{.}} {{/each}}{{/fragment}}';
+    Assert::equals(
+      'Test: * One * Two ',
+      $this->transform($template, ['items' => ['One', 'Two']])
+    );
+  }
 }
