@@ -3,7 +3,7 @@ Handlebars for XP web frontends change log
 
 ## ?.?.? / ????-??-??
 
-## 3.0.0 / ????-??-??
+## 3.0.0 / 2023-07-29
 
 * **Heads up:** Dropped compatibility with `xp-forge/handlebars` versions
   lower than 9.1.0
