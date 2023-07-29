@@ -100,7 +100,7 @@ class Index {
 }
 ```
 
-Accessing the URI */listing* will render only the `<ul>...</ul>` instead of the entire document. These fragments can be used in conjunction with frameworks like [htmx](https://htmx.org/).
+Accessing the URI */listing* will render only the `<ul>...</ul>` instead of the entire document. These fragments can be used in conjunction with frameworks like [htmx](https://htmx.org/), see [this gist for an example](https://gist.github.com/thekid/019b12627f129afe7bdaea4cc594b29a).
 
 Helpers
 -------
