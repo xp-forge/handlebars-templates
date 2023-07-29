@@ -1,6 +1,6 @@
 <?php namespace web\frontend;
 
-use com\github\mustache\TemplateLoader;
+use com\github\mustache\{Template, TemplateLoader, TemplateNotFoundException};
 use com\handlebarsjs\{HandlebarsEngine, FilesIn};
 use util\Objects;
 use web\frontend\helpers\{Extension, Essentials};
@@ -8,7 +8,8 @@ use web\frontend\helpers\{Extension, Essentials};
 /**
  * Handlebars-based template engine for web frontends.
  *
- * @test  web.frontend.unittest.HandlebarsTest
+ * @test  web.frontend.unittest.ClassTest
+ * @test  web.frontend.unittest.InlineTest
  * @see   https://handlebarsjs.com/
  */
 class Handlebars implements Templates {
@@ -45,6 +46,25 @@ class Handlebars implements Templates {
   }
 
   /**
+   * Fetches a template
+   *
+   * @param  string $name
+   * @param  ?string $fragment
+   * @return com.github.mustache.Template
+   * @throws com.github.mustache.TemplateNotFoundException
+   */
+  public function template($name, $fragment= null) {
+    $template= $this->backing->load($name);
+    if (null === $fragment) return $template;
+
+    if ($nodes= $template->root()->partial($fragment)) {
+      return new Template($fragment, $nodes);
+    }
+
+    throw new TemplateNotFoundException('No such fragment "'.$fragment.'" in template "'.$name.'"');
+  }
+
+  /**
    * Adds helpers from the given extension
    *
    * @param  [:var]|web.frontend.helpers.Extension $extension
@@ -64,8 +84,11 @@ class Handlebars implements Templates {
    * @param  [:var] $context
    * @return string
    */
-  public function render($name, $context) {
-    return $this->backing->evaluate($this->backing->load($name), $context + ['scope' => $name]);
+  public function render($name, $context, $fragment= null) {
+    return $this->backing->evaluate(
+      $this->template($name, $fragment),
+      $context + ['scope' => $name]
+    );
   }
 
   /**
@@ -76,8 +99,12 @@ class Handlebars implements Templates {
    * @param  io.streams.OutputStream $out
    * @return io.streams.OutputStream
    */
-  public function write($name, $context, $out) {
-    $this->backing->write($this->backing->load($name), $context + ['scope' => $name], $out);
+  public function write($name, $context, $out, $fragment= null) {
+    $this->backing->write(
+      $this->template($name, $fragment),
+      $context + ['scope' => $name],
+      $out
+    );
     return $out;
   }
 }

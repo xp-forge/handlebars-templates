@@ -17,6 +17,16 @@ class WithFrontMatter extends Node {
   }
 
   /**
+   * Returns partial
+   *
+   * @param  string $name
+   * @return ?com.github.mustache.NodeList
+   */
+  public function partial($name) {
+    return $this->nodes->partial($name);
+  }
+
+  /**
    * Evaluates this node
    *
    * @param  com.github.mustache.Context $context the rendering context

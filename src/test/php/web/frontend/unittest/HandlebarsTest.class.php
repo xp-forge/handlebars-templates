@@ -20,10 +20,11 @@ abstract class HandlebarsTest {
    *
    * @param  string $template
    * @param  [:var] $context
+   * @param  ?string $fragment
    * @return string
    */
-  protected function transform($template, $context= []) {
+  protected function transform($template, $context= [], $fragment= null) {
     $fixture= new Handlebars($this->templates->add('fixture', $template), $this->extensions());
-    return $fixture->render('fixture', $context);
+    return $fixture->render('fixture', $context, $fragment);
   }
 }
