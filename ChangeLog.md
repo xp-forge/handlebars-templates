@@ -6,7 +6,10 @@ Handlebars for XP web frontends change log
 ## 3.0.0 / ????-??-??
 
 * **Heads up:** Dropped compatibility with `xp-forge/handlebars` versions
-  lower than 9.0.0
+  lower than 9.1.0
+  (@thekid)
+* Merged PR #15: Implement fragments, which can thought of as "instantly-
+  invoked inline partials".
   (@thekid)
 * Merged PR #14: Make it possible to pass fragments to the `render()` and
   `write()` methods. This will select an inline partial and render that
