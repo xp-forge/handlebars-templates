@@ -59,6 +59,50 @@ nav:
 </html>
 ```
 
+Fragments
+---------
+Instead of rendering an entire template, we can render inline partials declared as follows:
+
+```handlebars
+<!DOCTYPE html>
+<html lang="en">
+  <head>...</head>
+  <body>
+    {{#*inline "listing"}}
+      <ul>
+        {{#each items}}
+          <li>{{.}}</li>
+        {{/each}}
+      </ul>
+    {{/inline}}
+    {{> listing}}
+  </body>
+</html>
+```
+
+...by selecting them via *fragment()* in our handler:
+
+```php
+use web\frontend\{Handler, Get};
+
+#[Handler]
+class Index {
+  private $list= ['One', 'Two', 'Three'];
+
+  #[Get]
+  public function index() {
+    return View::named('index')->with(['list' => $this->list]);
+  }
+
+  #[Get('/listing')]
+  public function partial() {
+    return View::named('index')->fragment('listing')->with(['list' => $this->list]);
+  }
+}
+```
+
+Accessing the URI */listing* will render only the `<ul>...</ul>` instead of the entire document. These fragments can be used in conjunction with frameworks like [htmx](https://htmx.org/).
+
 Helpers
 -------
 On top of the [built-in functionality in Handlebars](https://github.com/xp-forge/handlebars), this library includes the following essential helpers:
