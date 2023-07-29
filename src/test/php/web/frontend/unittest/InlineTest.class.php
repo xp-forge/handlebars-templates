@@ -23,7 +23,7 @@ class InlineTest extends HandlebarsTest {
   public function render_directly($inline) {
     Assert::equals(
       '* One ',
-      $this->transform($inline, 'One', 'list-item'),
+      $this->transform($inline, 'One', 'list-item')
     );
   }
 
