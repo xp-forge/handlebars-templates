@@ -1,7 +1,7 @@
 <?php namespace web\frontend;
 
-use com\github\mustache\FilesIn;
 use com\github\mustache\templates\Templates;
+use com\handlebarsjs\FilesIn;
 use util\NoSuchElementException;
 
 /**
