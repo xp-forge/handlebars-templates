@@ -1,26 +1,41 @@
 <?php namespace web\frontend;
 
+use com\github\mustache\FilesIn;
 use com\github\mustache\templates\Templates;
 use util\NoSuchElementException;
 
 /**
- * Adds support for loading namespaced templates (`namespace:name`) from
- * a given map of namespaces and template loaders.
+ * Loads templates from a given path by default, supporting namespaced
+ * templates (`namespace:name`) from a given map of namespaces and paths
+ * or loaders.
  *
  * @test  web.frontend.unittest.TemplatesFromTest
  */
 class TemplatesFrom extends Templates {
-  private $default, $namespaced;
+  private $default;
+  private $namespaced= [];
 
   /**
    * Creates a new instance
    *
-   * @param parent $default
-   * @param [:parent] $namespaced
+   * @param string|io.Path|io.Folder|parent $default
+   * @param [:string|io.Path|io.Folder|parent] $namespaced
    */
-  public function __construct(parent $default, array $namespaced= []) {
-    $this->default= $default;
-    $this->namespaced= $namespaced;
+  public function __construct($default, array $namespaced= []) {
+    $this->default= $this->asTemplates($default);
+    foreach ($namespaced as $namespace => $templates) {
+      $this->namespaced[$namespace]= $this->asTemplates($templates);
+    }
+  }
+
+  /**
+   * Casts given argument to a `Templates` instance.
+   *
+   * @param  string|io.Path|io.Folder|parent $arg
+   * @return parent
+   */
+  private function asTemplates($arg) {
+    return $arg instanceof parent ? $arg : new FilesIn($arg);
   }
 
   /**

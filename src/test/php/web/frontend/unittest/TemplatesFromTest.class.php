@@ -8,8 +8,13 @@ use web\frontend\{Handlebars, TemplatesFrom};
 class TemplatesFromTest extends HandlebarsTest {
 
   #[Test]
-  public function can_create() {
+  public function can_create_with_templates() {
     new TemplatesFrom($this->templates);
+  }
+
+  #[Test]
+  public function can_create_with_path() {
+    new TemplatesFrom('src/main/handlebars');
   }
 
   #[Test, Expect(class: NoSuchElementException::class, message: 'Unknown namespace "nonexistant"')]
