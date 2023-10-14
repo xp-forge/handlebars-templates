@@ -1,7 +1,7 @@
 <?php namespace web\frontend\unittest;
 
 use com\github\mustache\InMemory;
-use test\{Assert, Expect, Test};
+use test\{Assert, Expect, Test, Values};
 use util\NoSuchElementException;
 use web\frontend\{Handlebars, TemplatesFrom};
 
@@ -52,12 +52,12 @@ class TemplatesFromTest extends HandlebarsTest {
     Assert::equals('<h1>Test</h1>', $fixture->render('fixture', []));
   }
 
-  #[Test]
-  public function partial_blocks() {
-    $template= '{{#> layout:content}}{{#*inline "title"}}Test{{/inline}}{{/layout:content}}';
+  #[Test, Values(['layout', 'example/layout-lib'])]
+  public function partial_blocks($ns) {
+    $template= "{{#> {$ns}:content}}{{#*inline 'title'}}Test{{/inline}}{{/{$ns}:content}}";
     $fixture= new Handlebars(new TemplatesFrom(
       $this->templates->add('fixture', $template),
-      ['layout' => (new InMemory())->add('content', '<h1>{{> title}}</h1>')]
+      [$ns => (new InMemory())->add('content', '<h1>{{> title}}</h1>')]
     ));
 
     Assert::equals('<h1>Test</h1>', $fixture->render('fixture', []));
