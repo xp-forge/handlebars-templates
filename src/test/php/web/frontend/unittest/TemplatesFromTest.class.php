@@ -51,4 +51,15 @@ class TemplatesFromTest extends HandlebarsTest {
 
     Assert::equals('<h1>Test</h1>', $fixture->render('fixture', []));
   }
+
+  #[Test]
+  public function partial_blocks() {
+    $template= '{{#> layout:content}}{{#*inline "title"}}Test{{/inline}}{{/layout:content}}';
+    $fixture= new Handlebars(new TemplatesFrom(
+      $this->templates->add('fixture', $template),
+      ['layout' => (new InMemory())->add('content', '<h1>{{> title}}</h1>')]
+    ));
+
+    Assert::equals('<h1>Test</h1>', $fixture->render('fixture', []));
+  }
 }
