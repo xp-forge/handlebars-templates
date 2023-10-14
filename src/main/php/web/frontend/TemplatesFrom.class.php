@@ -23,8 +23,8 @@ class TemplatesFrom extends Templates {
    */
   public function __construct($default, array $namespaced= []) {
     $this->default= $this->asTemplates($default);
-    foreach ($namespaced as $namespace => $templates) {
-      $this->namespaced[$namespace]= $this->asTemplates($templates);
+    foreach ($namespaced as $ns => $t) {
+      $this->namespaced[$ns]= $this->asTemplates($t);
     }
   }
 
