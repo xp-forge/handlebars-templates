@@ -7,9 +7,9 @@ use util\NoSuchElementException;
  * Adds support for loading namespaced templates (`namespace:name`) from
  * a given map of namespaces and template loaders.
  *
- * @test  web.frontend.unittest.WithNamespacesTest
+ * @test  web.frontend.unittest.TemplatesFromTest
  */
-class WithNamespaces extends Templates {
+class TemplatesFrom extends Templates {
   private $default, $namespaced;
 
   /**
@@ -18,7 +18,7 @@ class WithNamespaces extends Templates {
    * @param parent $default
    * @param [:parent] $namespaced
    */
-  public function __construct(parent $default, array $namespaced) {
+  public function __construct(parent $default, array $namespaced= []) {
     $this->default= $default;
     $this->namespaced= $namespaced;
   }
