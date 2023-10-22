@@ -115,6 +115,7 @@ On top of the [built-in functionality in Handlebars](https://github.com/xp-forge
 * `any`: Test whether any of the given arguments is truthy
 * `none`: Test whether none of the given arguments is truthy
 * `all`: Test whether all of the given arguments is truthy
+* `coalesce`: Returns the first non-null argument
 
 ### Date handling
 
