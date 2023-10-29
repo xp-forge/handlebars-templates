@@ -40,4 +40,13 @@ class InlineTest extends HandlebarsTest {
       $this->transform($template, ['items' => ['One', 'Two']])
     );
   }
+
+  #[Test]
+  public function nested_fragment() {
+    $template= 'Test: {{#*fragment "items"}}{{#each items}}{{#*fragment "item"}}* {{.}}{{/fragment}} {{/each}}{{/fragment}}';
+    Assert::equals(
+      '* One * Two ',
+      $this->transform($template, ['items' => ['One', 'Two']], 'items')
+    );
+  }
 }
