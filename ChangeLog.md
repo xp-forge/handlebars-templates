@@ -3,6 +3,11 @@ Handlebars for XP web frontends change log
 
 ## ?.?.? / ????-??-??
 
+## 3.1.0 / 2023-10-29
+
+* Merged PR #19: Support nested fragments - @thekid
+* Added PHP 8.4 to test matrix - @thekid
+
 ## 3.0.0 / 2023-07-29
 
 * **Heads up:** Dropped compatibility with `xp-forge/handlebars` versions
