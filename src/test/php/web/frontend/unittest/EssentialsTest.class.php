@@ -86,4 +86,12 @@ class EssentialsTest extends HandlebarsTest {
       'empty'   => [],
     ]));
   }
+
+  #[Test, Values([[[], 'Default'], [['title' => null], 'Default'], [['title' => 'Test'], 'Test']])]
+  public function coalesce($context, $outcome) {
+    Assert::equals(
+      $outcome,
+      $this->transform('{{coalesce title "Default"}}', $context)
+    );
+  }
 }
