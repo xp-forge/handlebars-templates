@@ -3,6 +3,11 @@ Handlebars for XP web frontends change log
 
 ## ?.?.? / ????-??-??
 
+## 3.2.0 / 2023-12-25
+
+* Made compatible with https://github.com/xp-forge/frontend version 6.0
+  (@thekid)
+
 ## 3.1.0 / 2023-10-29
 
 * Merged PR #19: Support nested fragments - @thekid
