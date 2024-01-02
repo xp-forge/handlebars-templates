@@ -33,6 +33,20 @@ class InlineTest extends HandlebarsTest {
   }
 
   #[Test]
+  public function parameters() {
+    $template=
+      'Test: {{#*inline "items"}}'.
+      '{{#each select}}{{.}}{{#unless @last}}{{separator}}{{/unless}}{{/each}}'.
+      '{{/inline}}'.
+      '{{> items select=items separator=", "}}'
+    ;
+    Assert::equals(
+      'Test: One, Two',
+      $this->transform($template, ['items' => ['One', 'Two']])
+    );
+  }
+
+  #[Test]
   public function fragment() {
     $template= 'Test: {{#*fragment "item"}}{{key}}{{/fragment}}';
     Assert::equals(
