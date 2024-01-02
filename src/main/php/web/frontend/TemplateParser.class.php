@@ -23,7 +23,7 @@ class TemplateParser extends HandlebarsParser {
     parent::initialize();
     $this->blocks->register('*fragment', function($options, $state) {
       $name= $options[0] instanceof Quoted ? $options[0]->chars : $options[0];
-      $state->target->add(new PartialBlockHelper([$name]));
+      $state->target->add(new PartialBlockHelper([$name] + $options));
       return new BlockNode('fragment', [], $state->parents[0]->declare($name));
     });
   }
