@@ -3,6 +3,10 @@ Handlebars for XP web frontends change log
 
 ## ?.?.? / ????-??-??
 
+## 3.3.0 / 2024-01-14
+
+* Merged PR #20: Add support for fragment parameters - @thekid
+
 ## 3.2.0 / 2023-12-25
 
 * Made compatible with https://github.com/xp-forge/frontend version 6.0
