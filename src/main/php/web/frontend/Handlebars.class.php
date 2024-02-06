@@ -57,8 +57,9 @@ class Handlebars implements Templates {
     $template= $this->backing->load($name);
     if (null === $fragment) return $template;
 
-    if ($nodes= $template->root()->partial($fragment)) {
-      return new Template($fragment, $nodes);
+    $parent= $template->root();
+    if ($nodes= $parent->partial($fragment)) {
+      return new Template($fragment, $nodes->inheriting($parent));
     }
 
     throw new TemplateNotFoundException('No such fragment "'.$fragment.'" in template "'.$name.'"');

@@ -163,3 +163,17 @@ When using the development webserver, this shows the debug page:
 In production environments, logs will end up on the server's standard output:
 
 ![Console output](https://user-images.githubusercontent.com/696742/107874105-838c1b80-6eb7-11eb-8c7e-ee257ef1d92d.png)
+
+
+Standalone
+----------
+To use the template engine by itself, simply instantiate and call its *render()* method:
+
+```php
+use web\frontend\Handlebars;
+
+$engine= new Handlebars('.');
+echo $engine->render('home', []);
+```
+
+This will render the *home.handlebars* file and return the result as a string.
