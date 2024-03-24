@@ -3,6 +3,10 @@ Handlebars for XP web frontends change log
 
 ## ?.?.? / ????-??-??
 
+## 3.5.0 / 2024-03-24
+
+* Made compatible with XP 12 - @thekid
+
 ## 3.4.0 / 2024-02-04
 
 * Made compatible with https://github.com/xp-forge/yaml 7.0 and 8.0
