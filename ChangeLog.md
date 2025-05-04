@@ -3,6 +3,8 @@ Handlebars for XP web frontends change log
 
 ## ?.?.? / ????-??-??
 
+## 4.0.0 / 2025-05-04
+
 * **Heads up:** Dropped support for PHP < 7.4, see xp-framework/rfc#343
   (@thekid)
 * Added PHP 8.5 to test matrix - @thekid
