@@ -1,18 +1,19 @@
 <?php namespace web\frontend;
 
-use com\github\mustache\Node;
+use com\handlebarsjs\Nodes;
 
-class WithFrontMatter extends Node {
-  private $nodes, $pairs;
+class WithFrontMatter extends Nodes {
+  private $parent, $pairs;
 
   /**
    * Creates new frontmatter
    *
-   * @param  com.handlebarsjs.Nodes $nodes
+   * @param  com.handlebarsjs.Nodes $parent
    * @param  [:var] $pairs
    */
-  public function __construct($nodes, $pairs) {
-    $this->nodes= $nodes;
+  public function __construct(parent $parent, $pairs) {
+    parent::__construct($parent->nodes);
+    $this->parent= $parent;
     $this->pairs= (array)$pairs;
   }
 
@@ -23,7 +24,7 @@ class WithFrontMatter extends Node {
    * @return ?com.github.mustache.NodeList
    */
   public function partial($name) {
-    return $this->nodes->partial($name);
+    return $this->parent->partial($name);
   }
 
   /**
@@ -34,9 +35,9 @@ class WithFrontMatter extends Node {
    */
   public function write($context, $out) {
     $context->variables+= $this->pairs;
-    $this->nodes->write($context, $out);
+    $this->parent->write($context, $out);
   }
 
   /** @return string */
-  public function __toString() { return (string)$this->nodes; }
+  public function __toString() { return (string)$this->parent; }
 }

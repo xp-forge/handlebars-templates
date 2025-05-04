@@ -3,6 +3,11 @@ Handlebars for XP web frontends change log
 
 ## ?.?.? / ????-??-??
 
+## 3.5.1 / 2024-04-12
+
+* Fixed issue #21: WithFrontMatter incompatible with `Nodes::inheriting()`
+  (@thekid)
+
 ## 3.5.0 / 2024-03-24
 
 * Made compatible with XP 12 - @thekid
