@@ -6,7 +6,7 @@ Handlebars for XP web frontends
 [![BSD Licence](https://raw.githubusercontent.com/xp-framework/web/master/static/licence-bsd.png)](https://github.com/xp-framework/core/blob/master/LICENCE.md)
 [![Requires PHP 7.0+](https://raw.githubusercontent.com/xp-framework/web/master/static/php-7_0plus.svg)](http://php.net/)
 [![Supports PHP 8.0+](https://raw.githubusercontent.com/xp-framework/web/master/static/php-8_0plus.svg)](http://php.net/)
-[![Latest Stable Version](https://poser.pugx.org/xp-forge/handlebars-templates/version.png)](https://packagist.org/packages/xp-forge/handlebars-templates)
+[![Latest Stable Version](https://poser.pugx.org/xp-forge/handlebars-templates/version.svg)](https://packagist.org/packages/xp-forge/handlebars-templates)
 
 Handlebars template engine implementation to be used in conjunction with [XP web frontends](https://github.com/xp-forge/frontend).
 
