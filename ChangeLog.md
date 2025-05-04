@@ -3,6 +3,9 @@ Handlebars for XP web frontends change log
 
 ## ?.?.? / ????-??-??
 
+* **Heads up:** Dropped support for PHP < 7.4, see xp-framework/rfc#343
+  (@thekid)
+* Added PHP 8.5 to test matrix - @thekid
 * Refactored template loading to no longer use deprecated functionality
   from the `xp-forge/mustache` library, making it compatible with its
   newest major release
