@@ -3,6 +3,11 @@ Handlebars for XP web frontends change log
 
 ## ?.?.? / ????-??-??
 
+* Refactored template loading to no longer use deprecated functionality
+  from the `xp-forge/mustache` library, making it compatible with its
+  newest major release
+  (@thekid)
+
 ## 3.5.1 / 2024-04-12
 
 * Fixed issue #21: WithFrontMatter incompatible with `Nodes::inheriting()`

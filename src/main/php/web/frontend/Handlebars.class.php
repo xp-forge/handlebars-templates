@@ -1,6 +1,6 @@
 <?php namespace web\frontend;
 
-use com\github\mustache\{Template, TemplateLoader, TemplateNotFoundException};
+use com\github\mustache\{Template, TemplateNotFoundException};
 use com\handlebarsjs\{HandlebarsEngine, FilesIn};
 use util\Objects;
 use web\frontend\helpers\{Extension, Essentials};
@@ -29,7 +29,7 @@ class Handlebars implements Templates {
    */
   public function __construct($templates, array $extensions= []) {
     $this->backing= (new HandlebarsEngine(self::$parser))
-      ->withTemplates($templates instanceof TemplateLoader ? $templates : new FilesIn($templates))
+      ->withTemplates($templates)
       ->withLogger(function($args, $level= 'info') {
         echo '  ['.$level.'] ';
         foreach ($args as $arg) {
