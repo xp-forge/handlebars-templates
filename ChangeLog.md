@@ -3,6 +3,10 @@ Handlebars for XP web frontends change log
 
 ## ?.?.? / ????-??-??
 
+## 4.1.0 / 2025-05-10
+
+* Added compatibility with `xp-forge/yaml` 9.0.0-RELEASE - @thekid
+
 ## 4.0.0 / 2025-05-04
 
 * **Heads up:** Dropped support for PHP < 7.4, see xp-framework/rfc#343

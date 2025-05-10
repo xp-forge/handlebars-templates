@@ -9,7 +9,7 @@
     "xp-framework/core": "^12.0 | ^11.0 | ^10.0",
     "xp-forge/frontend": "^7.0 | ^6.0",
     "xp-forge/handlebars": "^10.0 | ^9.3",
-    "xp-forge/yaml": "^8.0 | ^7.0 | ^6.0",
+    "xp-forge/yaml": "^9.0 | ^8.0 | ^7.0 | ^6.0",
     "php": ">=7.4.0"
   },
   "require-dev" : {
