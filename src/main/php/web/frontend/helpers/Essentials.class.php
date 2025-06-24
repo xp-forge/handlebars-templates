@@ -61,5 +61,11 @@ class Essentials extends Extension {
       }
       return empty($options) ? 0 : 1;
     };
+    yield 'coalesce' => function($in, $context, $options) {
+      foreach ($options as $option) {
+        if (isset($option)) return $option;
+      }
+      return null;
+    };
   }
 }
