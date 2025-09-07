@@ -21,10 +21,14 @@ class WithFrontMatter extends Nodes {
    * Returns partial
    *
    * @param  string $name
-   * @return ?com.github.mustache.NodeList
+   * @return ?self
    */
   public function partial($name) {
-    return $this->parent->partial($name);
+    if ($nodes= $this->parent->partial($name)) {
+      return new self($nodes, $this->pairs);
+    } else {
+      return null;
+    }
   }
 
   /**

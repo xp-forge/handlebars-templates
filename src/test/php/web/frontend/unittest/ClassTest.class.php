@@ -45,16 +45,6 @@ class ClassTest extends HandlebarsTest {
   }
 
   #[Test]
-  public function access_frontmatter_from_fragment() {
-    $frontmatter= "---\nuser: default\n---\n";
-    $fixture= new Handlebars($this->templates->add('fixture', $frontmatter.'[{{#*fragment "user"}}@{{user}}{{/fragment}}]'));
-    Assert::equals(
-      '[@default]',
-      $fixture->render('fixture', [])
-    );
-  }
-
-  #[Test]
   public function write() {
     $fixture= new Handlebars($this->templates->add('fixture', '<h1>Hello @{{user}}!</h1>'));
     Assert::equals(

@@ -43,4 +43,40 @@ class YamlFrontMatterTest extends HandlebarsTest {
       []
     ));
   }
+
+  #[Test]
+  public function access_frontmatter_from_fragment() {
+    Assert::equals('Hello @test', $this->transform(
+      "---\n".
+      "prefix: @\n".
+      "---\n".
+      'Hello {{#*fragment "user"}}@{{user}}{{/fragment}}',
+      ['user' => 'test']
+    ));
+  }
+
+  #[Test]
+  public function access_frontmatter_from_inline() {
+    Assert::equals('Hello @test', $this->transform(
+      "---\n".
+      "prefix: @\n".
+      "---\n".
+      '{{#*inline "content"}}{{prefix}}{{user}}{{/inline}}'.
+      'Hello {{> content}}',
+      ['user' => 'test']
+    ));
+  }
+
+  #[Test]
+  public function access_frontmatter_when_rendering_fragment() {
+    Assert::equals('@test', $this->transform(
+      "---\n".
+      "prefix: @\n".
+      "---\n".
+      '{{#*inline "content"}}{{prefix}}{{user}}{{/inline}}'.
+      'Hello {{> content}}',
+      ['user' => 'test'],
+      'content'
+    ));
+  }
 }
