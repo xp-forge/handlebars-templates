@@ -6,7 +6,7 @@ Handlebars for XP web frontends change log
 ## 4.2.0 / 2025-09-07
 
 * Added support for inherited front matter to partials, making definitions
-  accessible to templates' partials
+  accessible when rendering template fragments.
   (@thekid)
 * Fixed PHP 8.5 deprecation warnings about using null as an array offset
   being deprecated
