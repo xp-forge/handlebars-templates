@@ -34,7 +34,7 @@ class Dates extends Extension {
         $d= $tz->translate(new Date($options[0]));
       }
 
-      return $d->toString($this->formats[$options['format'] ?? null] ?? $options['format']);
+      return $d->toString($this->formats[$options['format'] ?? ''] ?? $options['format']);
     };
   }
 }

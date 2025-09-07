@@ -11,7 +11,7 @@ class DatesTest extends HandlebarsTest {
   /** @return web.frontend.Extension[] */
   protected function extensions() {
     return [new Dates(new TimeZone(self::TZ), [
-      null       => self::FORMAT,
+      ''         => self::FORMAT,
       'us:short' => 'm/d/Y',
     ])];
   }

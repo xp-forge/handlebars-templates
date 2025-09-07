@@ -3,6 +3,12 @@ Handlebars for XP web frontends change log
 
 ## ?.?.? / ????-??-??
 
+## 4.1.1 / 2025-09-07
+
+* Fixed PHP 8.5 deprecation warnings about using null as an array offset
+  being deprecated
+  (@thekid)
+
 ## 4.1.0 / 2025-05-10
 
 * Added compatibility with `xp-forge/yaml` 9.0.0-RELEASE - @thekid
