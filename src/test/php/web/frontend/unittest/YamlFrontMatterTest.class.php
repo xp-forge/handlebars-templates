@@ -20,6 +20,11 @@ class YamlFrontMatterTest extends HandlebarsTest {
     Assert::equals('Works', $this->transform("---\nit: Defaults\n---\n{{it}}", ['it' => 'Works']));
   }
 
+  #[Test]
+  public function matter() {
+    Assert::equals('Defaults', $this->transform("---\nit: Defaults\n---\n{{it}}", []));
+  }
+
   #[Test, Expect(class: TemplateFormatException::class, message: 'Unclosed YAML front matter')]
   public function unclosed_matter() {
     $this->transform("---\n");
