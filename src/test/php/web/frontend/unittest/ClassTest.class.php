@@ -26,6 +26,15 @@ class ClassTest extends HandlebarsTest {
   }
 
   #[Test]
+  public function render_fragment() {
+    $fixture= new Handlebars($this->templates->add('fixture', 'Before {{#*fragment "user"}}@{{user}}{{/fragment}} After'));
+    Assert::equals(
+      '@test',
+      $fixture->render('fixture', ['user' => 'test'], 'user')
+    );
+  }
+
+  #[Test]
   public function write() {
     $fixture= new Handlebars($this->templates->add('fixture', '<h1>Hello @{{user}}!</h1>'));
     Assert::equals(
