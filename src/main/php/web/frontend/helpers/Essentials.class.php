@@ -1,5 +1,7 @@
 <?php namespace web\frontend\helpers;
 
+use text\json\{StringOutput, Format};
+
 /** Built-in and automatically loaded essentials */
 class Essentials extends Extension {
 
@@ -9,7 +11,10 @@ class Essentials extends Extension {
       return rawurlencode($options[0] ?? '');
     };
     yield 'json' => function($in, $context, $options) {
-      return json_encode($options[0] ?? null, ($options['format'] ?? false) ? JSON_PRETTY_PRINT : 0);
+      static $format;
+      $s= new StringOutput(($options['format'] ?? false) ? ($format??= Format::wrapped('  ')) : Format::$DEFAULT);
+      $s->write($options[0] ?? null);
+      return $s->bytes();
     };
     yield 'equals' => function($in, $context, $options) {
       return (int)(($options[0] ?? null) === ($options[1] ?? null));

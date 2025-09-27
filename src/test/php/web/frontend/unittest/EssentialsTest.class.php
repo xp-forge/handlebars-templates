@@ -29,16 +29,18 @@ class EssentialsTest extends HandlebarsTest {
   }
 
   #[Test]
+  public function json_iterable() {
+    $numbers= function() { yield 1; yield 2; yield 3; };
+    Assert::equals(
+      'let it = [1,2,3];',
+      $this->transform('let it = {{&json input}};', ['input' => $numbers()])
+    );
+  }
+
+  #[Test]
   public function formatted_json() {
     Assert::equals(
-      <<<'JSON'
-      {
-          "hello": [
-              "World",
-              true
-          ]
-      }
-      JSON,
+      "{\n  \"hello\": [\"World\", true]\n}",
       $this->transform('{{&json input format=true}}', ['input' => ['hello' => ['World', true]]])
     );
   }
