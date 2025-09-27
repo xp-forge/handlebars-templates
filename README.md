@@ -107,6 +107,7 @@ Helpers
 On top of the [built-in functionality in Handlebars](https://github.com/xp-forge/handlebars), this library includes the following essential helpers:
 
 * `encode`: Performs URL-encoding 
+* `json`: Performs JSON encoding, pretty-printing when given `format=true`.
 * `equals`: Tests arguments for equality
 * `contains`: Tests whether a string or array contains a certain value
 * `size`: Returns string length or array size
