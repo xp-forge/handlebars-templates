@@ -9,7 +9,7 @@ class Essentials extends Extension {
       return rawurlencode($options[0] ?? '');
     };
     yield 'json' => function($in, $context, $options) {
-      return json_encode($options[0] ?? null, isset($options['format']) ? JSON_PRETTY_PRINT : 0);
+      return json_encode($options[0] ?? null, ($options['format'] ?? false) ? JSON_PRETTY_PRINT : 0);
     };
     yield 'equals' => function($in, $context, $options) {
       return (int)(($options[0] ?? null) === ($options[1] ?? null));
