@@ -1,6 +1,7 @@
 <?php namespace web\frontend\helpers;
 
 use text\json\{StringOutput, Format};
+use util\data\Marshalling;
 
 /** Built-in and automatically loaded essentials */
 class Essentials extends Extension {
@@ -11,9 +12,10 @@ class Essentials extends Extension {
       return rawurlencode($options[0] ?? '');
     };
     yield 'json' => function($in, $context, $options) {
-      static $format;
+      static $marshalling, $format;
+
       $s= new StringOutput(($options['format'] ?? false) ? ($format??= Format::wrapped('  ')) : Format::$DEFAULT);
-      $s->write($options[0] ?? null);
+      $s->write(($marshalling??= new Marshalling())->marshal($options[0] ?? null));
       return $s->bytes();
     };
     yield 'equals' => function($in, $context, $options) {

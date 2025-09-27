@@ -1,8 +1,21 @@
 <?php namespace web\frontend\unittest;
 
+use ArrayIterator;
 use test\{Assert, Test, Values};
 
 class EssentialsTest extends HandlebarsTest {
+
+  /** @return iterable */
+  private function objects() {
+    yield [['hello' => ['World', true]]];
+    yield [new class() { public $hello= ['World', true]; }];
+  }
+
+  /** @return iterable */
+  private function iterables() {
+    yield [(function() { yield 1; yield 2; yield 3; })()];
+    yield [new ArrayIterator([1, 2, 3])];
+  }
 
   #[Test]
   public function url_encode() {
@@ -20,20 +33,19 @@ class EssentialsTest extends HandlebarsTest {
     );
   }
 
-  #[Test]
-  public function json_object() {
+  #[Test, Values(from: 'objects')]
+  public function json_object($object) {
     Assert::equals(
       'let obj = {"hello":["World",true]};',
-      $this->transform('let obj = {{&json input}};', ['input' => ['hello' => ['World', true]]])
+      $this->transform('let obj = {{&json input}};', ['input' => $object])
     );
   }
 
-  #[Test]
-  public function json_iterable() {
-    $numbers= function() { yield 1; yield 2; yield 3; };
+  #[Test, Values(from: 'iterables')]
+  public function json_iterable($iterable) {
     Assert::equals(
       'let it = [1,2,3];',
-      $this->transform('let it = {{&json input}};', ['input' => $numbers()])
+      $this->transform('let it = {{&json input}};', ['input' => $iterable])
     );
   }
 
