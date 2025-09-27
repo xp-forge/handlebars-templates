@@ -1,5 +1,6 @@
 <?php namespace web\frontend\helpers;
 
+use Countable;
 use text\json\{StringOutput, Format};
 use util\data\Marshalling;
 
@@ -33,7 +34,7 @@ class Essentials extends Extension {
     yield 'size' => function($in, $context, $options) {
       if (!isset($options[0])) {
         return 0;
-      } else if ($options[0] instanceof \Countable || is_array($options[0])) {
+      } else if ($options[0] instanceof Countable || is_array($options[0])) {
         return sizeof($options[0]);
       } else {
         return strlen($options[0]);
