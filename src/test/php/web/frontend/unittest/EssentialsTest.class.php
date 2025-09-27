@@ -12,6 +12,42 @@ class EssentialsTest extends HandlebarsTest {
     );
   }
 
+  #[Test]
+  public function json_string() {
+    Assert::equals(
+      'let str = "He said \\"hello \\u4e16\\u754c!\\"\\n";',
+      $this->transform('let str = {{&json input}};', ['input' => 'He said "hello 世界!"'."\n"])
+    );
+  }
+
+  #[Test]
+  public function json_object() {
+    Assert::equals(
+      'let obj = {"hello":["World",true]};',
+      $this->transform('let obj = {{&json input}};', ['input' => ['hello' => ['World', true]]])
+    );
+  }
+
+  #[Test]
+  public function formatted_json() {
+    Assert::equals(
+      <<<'JSON'
+      {
+          "hello": [
+              "World",
+              true
+          ]
+      }
+      JSON,
+      $this->transform('{{&json input format=true}}', ['input' => ['hello' => ['World', true]]])
+    );
+  }
+
+  #[Test, Values([['</script>', '"<\\/script>"'], ['// END', '"\\/\\/ END"']])]
+  public function forward_slashes_escaped($input, $expected) {
+    Assert::equals($expected, $this->transform('{{&json input}}', ['input' => $input]));
+  }
+
   #[Test, Values(['{{equals "A" "A"}}', '{{equals "A" a}}', '{{equals a a}}'])]
   public function are_equal($template) {
     Assert::equals('1', $this->transform($template, ['a' => 'A']));
