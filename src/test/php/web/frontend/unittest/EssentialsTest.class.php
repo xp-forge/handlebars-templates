@@ -57,7 +57,7 @@ class EssentialsTest extends HandlebarsTest {
     );
   }
 
-  #[Test, Values([['</script>', '"<\\/script>"'], ['// END', '"\\/\\/ END"']])]
+  #[Test, Values([['</script>', '"<\\/script>"'], ['// END', '"\\/\\/ END"'], [['tag' => '</a>'], '{"tag":"<\\/a>"}']])]
   public function forward_slashes_escaped($input, $expected) {
     Assert::equals($expected, $this->transform('{{&json input}}', ['input' => $input]));
   }
