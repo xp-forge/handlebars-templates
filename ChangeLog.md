@@ -3,6 +3,12 @@ Handlebars for XP web frontends change log
 
 ## ?.?.? / ????-??-??
 
+## 4.2.0 / 2025-09-27
+
+* Merged PR #22: Add `json` helper, which can be used to transport values
+  from PHP to JavaScript.
+  (@thekid)
+
 ## 4.2.0 / 2025-09-07
 
 * Added support for inherited front matter to partials, making definitions
