@@ -1,7 +1,7 @@
 <?php namespace web\frontend\helpers;
 
 use Countable;
-use text\json\{StringOutput, Format};
+use text\json\{StringOutput, WrappedFormat};
 use util\data\Marshalling;
 
 /** Built-in and automatically loaded essentials */
@@ -15,7 +15,7 @@ class Essentials extends Extension {
     yield 'json' => function($in, $context, $options) {
       static $marshalling, $format;
 
-      $s= new StringOutput(($options['format'] ?? false) ? ($format??= Format::wrapped('  ')) : Format::$DEFAULT);
+      $s= new StringOutput(($options['format'] ?? false) ? ($format??= new WrappedFormat('  ')) : null);
       $s->write(($marshalling??= new Marshalling())->marshal($options[0] ?? null));
       return $s->bytes();
     };
