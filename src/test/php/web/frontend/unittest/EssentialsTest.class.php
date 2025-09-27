@@ -1,8 +1,21 @@
 <?php namespace web\frontend\unittest;
 
+use ArrayIterator, Countable;
 use test\{Assert, Test, Values};
 
 class EssentialsTest extends HandlebarsTest {
+
+  /** @return iterable */
+  private function objects() {
+    yield [['hello' => ['World', true]]];
+    yield [new class() { public $hello= ['World', true]; }];
+  }
+
+  /** @return iterable */
+  private function iterables() {
+    yield [(function() { yield 1; yield 2; yield 3; })()];
+    yield [new ArrayIterator([1, 2, 3])];
+  }
 
   #[Test]
   public function url_encode() {
@@ -10,6 +23,43 @@ class EssentialsTest extends HandlebarsTest {
       '<a href="/user/~test%2Ffixture">...</a>',
       $this->transform('<a href="/user/{{encode id}}">...</a>', ['id' => '~test/fixture'])
     );
+  }
+
+  #[Test]
+  public function json_string() {
+    Assert::equals(
+      'let str = "He said \\"hello \\u4e16\\u754c!\\"\\n";',
+      $this->transform('let str = {{&json input}};', ['input' => 'He said "hello 世界!"'."\n"])
+    );
+  }
+
+  #[Test, Values(from: 'objects')]
+  public function json_object($object) {
+    Assert::equals(
+      'let obj = {"hello":["World",true]};',
+      $this->transform('let obj = {{&json input}};', ['input' => $object])
+    );
+  }
+
+  #[Test, Values(from: 'iterables')]
+  public function json_iterable($iterable) {
+    Assert::equals(
+      'let it = [1,2,3];',
+      $this->transform('let it = {{&json input}};', ['input' => $iterable])
+    );
+  }
+
+  #[Test]
+  public function formatted_json() {
+    Assert::equals(
+      "{\n  \"hello\": [\"World\", true]\n}",
+      $this->transform('{{&json input format=true}}', ['input' => ['hello' => ['World', true]]])
+    );
+  }
+
+  #[Test, Values([['</script>', '"<\\/script>"'], ['// END', '"\\/\\/ END"'], [['tag' => '</a>'], '{"tag":"<\\/a>"}']])]
+  public function forward_slashes_escaped($input, $expected) {
+    Assert::equals($expected, $this->transform('{{&json input}}', ['input' => $input]));
   }
 
   #[Test, Values(['{{equals "A" "A"}}', '{{equals "A" a}}', '{{equals a a}}'])]
@@ -44,7 +94,7 @@ class EssentialsTest extends HandlebarsTest {
       'test'    => 'Test',
       'numbers' => [1, 2, 3],
       'sizes'   => ['S' => 12.99, 'M' => 13.99],
-      'count'   => new class() implements \Countable { public function count(): int { return 1; } },
+      'count'   => new class() implements Countable { public function count(): int { return 1; } },
       'empty'   => [],
     ]));
   }

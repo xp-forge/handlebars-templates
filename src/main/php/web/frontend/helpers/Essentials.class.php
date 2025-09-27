@@ -1,5 +1,9 @@
 <?php namespace web\frontend\helpers;
 
+use Countable;
+use text\json\{StringOutput, WrappedFormat};
+use util\data\Marshalling;
+
 /** Built-in and automatically loaded essentials */
 class Essentials extends Extension {
 
@@ -7,6 +11,13 @@ class Essentials extends Extension {
   public function helpers() {
     yield 'encode' => function($in, $context, $options) {
       return rawurlencode($options[0] ?? '');
+    };
+    yield 'json' => function($in, $context, $options) {
+      static $marshalling, $format;
+
+      $s= new StringOutput(($options['format'] ?? false) ? ($format??= new WrappedFormat('  ')) : null);
+      $s->write(($marshalling??= new Marshalling())->marshal($options[0] ?? null));
+      return $s->bytes();
     };
     yield 'equals' => function($in, $context, $options) {
       return (int)(($options[0] ?? null) === ($options[1] ?? null));
@@ -23,7 +34,7 @@ class Essentials extends Extension {
     yield 'size' => function($in, $context, $options) {
       if (!isset($options[0])) {
         return 0;
-      } else if ($options[0] instanceof \Countable || is_array($options[0])) {
+      } else if ($options[0] instanceof Countable || is_array($options[0])) {
         return sizeof($options[0]);
       } else {
         return strlen($options[0]);
