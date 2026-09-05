@@ -15,7 +15,7 @@ class Dates extends Extension {
    */
   public function __construct($timezone= null, $formats= []) {
     $this->timezone= $timezone ?? TimeZone::getLocal();
-    $this->formats= $formats + [null => 'd.m.Y H:i:s'];
+    $this->formats= $formats + ['' => 'd.m.Y H:i:s'];
   }
 
   /** @return iterable */
