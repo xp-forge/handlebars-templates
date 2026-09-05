@@ -3,14 +3,14 @@ Handlebars for XP web frontends change log
 
 ## ?.?.? / ????-??-??
 
-## 4.2.1 / 2026-09-05
+## 4.3.1 / 2026-09-05
 
 * Added PHP 8.6 to test matrix - @thekid
 * Fixed *Using null as an array offset is deprecated, use an empty string
   instead* warning in PHP 8.5+
   (@thekid)
 
-## 4.2.0 / 2025-09-27
+## 4.3.0 / 2025-09-27
 
 * Merged PR #22: Add `json` helper, which can be used to transport values
   from PHP to JavaScript.
