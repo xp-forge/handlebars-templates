@@ -39,20 +39,21 @@ class Dates extends Extension {
 
     yield 'duration' => function($in, $context, $options) use($resolution) {
       if ($r= $options['timestamp'] ?? null) {
-        $s= (int)($options[0] / $resolution[$r]);
+        $s= (int)(abs($options[0]) / $resolution[$r]);
       } else {
-        $s= (int)$options[0];
+        $s= (int)abs($options[0]);
       }
 
       $h= (int)($s / 3600); $s%= 3600;
       $m= (int)($s / 60); $s%= 60;
 
-      return strtr($options['format'] ?? 'H:i:s', [
-        'H' => $h < 10 ? "0$h" : $h,
-        'i' => $m < 10 ? "0$m" : $m,
-        's' => $s < 10 ? "0$s" : $s,
-        'G' => $h,
-        'm' => $m,
+      return strtr(($h ? $options['hours'] ?? null : null) ?? $options['format'] ?? '%H:%M:%S', [
+        '%H' => $h < 10 ? "0$h" : $h,
+        '%M' => $m < 10 ? "0$m" : $m,
+        '%S' => $s < 10 ? "0$s" : $s,
+        '%h' => $h,
+        '%m' => $m,
+        '%s' => $s,
       ]);
     };
   }
