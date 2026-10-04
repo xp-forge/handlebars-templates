@@ -148,6 +148,15 @@ The `date` helper accepts anything the `util.Date` class accepts as constructor 
 {{date created timezone="America/New_York"}}
 ```
 
+The `duration` helper formats seconds or milliseconds using `%H/%M/%S` for hours, minutes and seconds with leading zeroes, and `%h/%m/%s` without them. The following examples show usage variants:
+
+```handlebars
+{{duration 0}}
+{{duration computed.duration format="%h:%M h"}}
+{{duration video.duration format="%M:%S" hours="%h:%M:%S"}}
+{{duration 16384 timestamp="ms"}}
+```
+
 ### Logging
 
 The `log` helper will echo the arguments passed to it:

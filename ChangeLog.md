@@ -3,6 +3,12 @@ Handlebars for XP web frontends change log
 
 ## ?.?.? / ????-??-??
 
+## 4.4.0 / 2026-10-04
+
+* Merged PR #23: Add `duration` helper to format time durations, e.g. for
+  video and audio files
+  (@thekid)
+
 ## 4.3.1 / 2026-09-05
 
 * Added PHP 8.6 to test matrix - @thekid
