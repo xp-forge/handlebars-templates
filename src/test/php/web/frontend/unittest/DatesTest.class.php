@@ -24,6 +24,22 @@ class DatesTest extends HandlebarsTest {
     yield 1613215800;
   }
 
+  /** @return iterable */
+  private function durations() {
+    yield ['0', '00:00'];
+    yield ['4500', '01:15'];
+    yield ['4509', '01:15'];
+
+    // See https://www.php.net/manual/en/datetime.format.php
+    yield ['4509 format="G:i"', '1:15'];
+    yield ['4509 format="H:i:s"', '01:15:09'];
+    yield ['90000 format="H:i"', '25:00'];
+
+    // Timestamp is either s (seconds) or ms (millisecconds)
+    yield ['4509 timestamp="s"', '01:15'];
+    yield ['4508192 timestamp="ms"', '01:15'];
+  }
+
   #[Test, Values(from: 'dates')]
   public function dates_with_format($date) {
     Assert::equals(
@@ -72,5 +88,10 @@ class DatesTest extends HandlebarsTest {
       '13.02.2021 06:30:00',
       $this->transform('{{date tested format="d.m.Y H:i:s" timezone="America/New_York"}}', ['tested' => $date])
     );
+  }
+
+  #[Test, Values(from: 'durations')]
+  public function duration($options, $expected) {
+    Assert::equals($expected, $this->transform("{{duration {$options}}}"));
   }
 }
