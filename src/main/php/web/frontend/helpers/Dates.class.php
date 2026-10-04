@@ -47,7 +47,7 @@ class Dates extends Extension {
       $h= (int)($s / 3600); $s%= 3600;
       $m= (int)($s / 60); $s%= 60;
 
-      return strtr($options['format'] ?? 'H:i', [
+      return strtr($options['format'] ?? 'H:i:s', [
         'H' => $h < 10 ? "0$h" : $h,
         'i' => $m < 10 ? "0$m" : $m,
         's' => $s < 10 ? "0$s" : $s,

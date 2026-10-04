@@ -26,9 +26,9 @@ class DatesTest extends HandlebarsTest {
 
   /** @return iterable */
   private function durations() {
-    yield ['0', '00:00'];
-    yield ['4500', '01:15'];
-    yield ['4509', '01:15'];
+    yield ['0', '00:00:00'];
+    yield ['4500', '01:15:00'];
+    yield ['4509', '01:15:09'];
 
     // See https://www.php.net/manual/en/datetime.format.php
     yield ['4509 format="G:i"', '1:15'];
@@ -36,8 +36,9 @@ class DatesTest extends HandlebarsTest {
     yield ['90000 format="H:i"', '25:00'];
 
     // Timestamp is either s (seconds) or ms (millisecconds)
-    yield ['4509 timestamp="s"', '01:15'];
-    yield ['4508192 timestamp="ms"', '01:15'];
+    yield ['4508 timestamp="s"', '01:15:08'];
+    yield ['4508.192 timestamp="s"', '01:15:08'];
+    yield ['4508192 timestamp="ms"', '01:15:08'];
   }
 
   #[Test, Values(from: 'dates')]
