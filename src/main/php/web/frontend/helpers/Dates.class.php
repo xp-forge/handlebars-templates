@@ -20,9 +20,9 @@ class Dates extends Extension {
 
   /** @return iterable */
   public function helpers() {
-    yield 'date' => function($in, $context, $options) {
-      static $resolution= ['s' => 1, 'ms' => 1000];
+    static $resolution= ['s' => 1, 'ms' => 1000];
 
+    yield 'date' => function($in, $context, $options) use($resolution) {
       $tz= isset($options['timezone']) ? TimeZone::getByName($options['timezone']) : $this->timezone;
       if (!isset($options[0])) {
         $d= Date::now($tz);
@@ -35,6 +35,26 @@ class Dates extends Extension {
       }
 
       return $d->toString($this->formats[$options['format'] ?? ''] ?? $options['format']);
+    };
+
+    yield 'duration' => function($in, $context, $options) use($resolution) {
+      if ($r= $options['timestamp'] ?? null) {
+        $s= (int)(abs($options[0]) / $resolution[$r]);
+      } else {
+        $s= (int)abs($options[0]);
+      }
+
+      $h= (int)($s / 3600); $s%= 3600;
+      $m= (int)($s / 60); $s%= 60;
+
+      return strtr(($h ? $options['hours'] ?? null : null) ?? $options['format'] ?? '%H:%M:%S', [
+        '%H' => $h < 10 ? "0$h" : $h,
+        '%M' => $m < 10 ? "0$m" : $m,
+        '%S' => $s < 10 ? "0$s" : $s,
+        '%h' => $h,
+        '%m' => $m,
+        '%s' => $s,
+      ]);
     };
   }
 }
