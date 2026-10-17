@@ -3,6 +3,10 @@ Handlebars for XP web frontends change log
 
 ## ?.?.? / ????-??-??
 
+## 4.5.0 / 2026-10-17
+
+* Added compatibility with `xp-forge/json` version 7.0+ - @thekid
+
 ## 4.4.0 / 2026-10-04
 
 * Merged PR #23: Add `duration` helper to format time durations, e.g. for
